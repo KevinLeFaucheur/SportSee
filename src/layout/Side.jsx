@@ -13,12 +13,25 @@ const SideWrapper = styled.div`
     background-color: black;
 `
 
+const Copyright = styled.p`
+    position: absolute;
+    bottom: 18%;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: left;
+    width: max-content;
+    margin: 0;
+    color: white;
+    transform: rotate(-90deg);
+`
+
 export const Side = () => {
     return (
         <SideWrapper>
             {logos.map(
                 logo => <SideButton key={`button-${logo}`} logo={logo} />
             )}
+            <Copyright>Copiryght, SportSee 2020</Copyright>
         </SideWrapper>
     )
 }
