@@ -27,11 +27,11 @@ const Copyright = styled.p`
 
 export const Side = () => {
     const logos = Object.values(sideBar);
-    
+
     return (
         <SideWrapper>
             {logos.map(
-                logo => <SideButton key={`button-${logo}`} logo={logo} />
+                (logo, index) => <SideButton key={`button-${index}`} logo={logo} />
             )}
             <Copyright>Copiryght, SportSee 2020</Copyright>
         </SideWrapper>

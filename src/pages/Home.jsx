@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { dashboard } from "../styles/vitamins";
+import { Stat } from "../components/Stat";
 
 const HomeWrapper = styled.div`
   height: 779px;
@@ -39,35 +41,6 @@ const StatsWrapper = styled.div`
   flex-direction: column;
 `
 
-const Stat = styled.div`
-  display: flex;
-  justify-content: space-between;
-  height: auto;
-  width: 258px;
-  background-color: #FBFBFB; 
-  border-radius: 5px;
-  padding: 32px;
-`
-
-const StatIcon = styled.div`
-  width: 60px;
-  height: 60px;
-  background-color: #FF0000;
-  mix-blend-mode: normal;
-  opacity: 0.07;
-  border-radius: 6px;
-`
-
-const StatText = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  p {
-    margin: 0;
-  }
-`
-
 const GraphWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -102,6 +75,7 @@ const Graph = styled.div`
 `
 
 export const Home = () => {
+  {console.log(dashboard)}
   return (
     <HomeWrapper>
       <Head>
@@ -116,34 +90,7 @@ export const Home = () => {
           <Graph></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          <Stat>
-            <StatIcon />
-            <StatText>
-              <p>1,930kCal</p>
-              <p>Calories</p>
-            </StatText>
-          </Stat>
-          <Stat>
-            <StatIcon />
-            <StatText>
-              <p>1,930kCal</p>
-              <p>Calories</p>
-            </StatText>
-          </Stat>
-          <Stat>
-            <StatIcon />
-            <StatText>
-              <p>1,930kCal</p>
-              <p>Calories</p>
-            </StatText>
-          </Stat>
-          <Stat>
-            <StatIcon />
-            <StatText>
-              <p>1,930kCal</p>
-              <p>Calories</p>
-            </StatText>
-          </Stat>
+          {dashboard.map((stat, index) => <Stat key={`dashboard-${index}`} stat={stat} />)}
         </StatsWrapper>
       </Body>
     </HomeWrapper>
