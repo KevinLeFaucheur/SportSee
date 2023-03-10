@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import logo from "../styles/temp.svg"
 
 const Button = styled.button`
     width: 64px;
@@ -9,9 +8,8 @@ const Button = styled.button`
     margin-bottom: 20px;
 `
 
-export const SideButton = () => {
+export const SideButton = ({ logo }) => {
     return (
-        <Button><img src={logo} alt="Zen" />
-        </Button>
+        <Button dangerouslySetInnerHTML={{__html: logo}}></Button>
     )
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { SideButton } from "../components/SideButton"
-import { logos } from "../styles/logos"
+import { sideBar } from "../styles/logos"
 
 const SideWrapper = styled.div`
     display: flex;
@@ -26,6 +26,8 @@ const Copyright = styled.p`
 `
 
 export const Side = () => {
+    const logos = Object.values(sideBar);
+    
     return (
         <SideWrapper>
             {logos.map(
