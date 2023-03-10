@@ -7,10 +7,12 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     #root{
+        height: 100%;
     }
 
     body {
         font-family: 'Roboto', sans-serif;
+        height: 100vh;
         margin: 0;
     }
 
