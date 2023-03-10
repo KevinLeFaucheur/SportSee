@@ -11,6 +11,20 @@ const HomeWrapper = styled.div`
 const Head = styled.div`
   display: flex;
   flex-direction: column;
+
+  h2 {
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 24px;
+    margin: 0 0 41px;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0 0 77px;
+  }
 `
 
 const Body = styled.div`
