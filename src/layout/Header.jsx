@@ -7,13 +7,27 @@ const HeaderWrapper = styled.div`
     background-color: black;
 `
 
+const NavBar = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+`
+
+const StyledLink = styled(NavLink)`
+    line-height: 24px;
+    font-size: 24px;
+`
+
 export const Header = () => {
     return (
         <HeaderWrapper>
-            <NavLink to='/'>Accueil</NavLink>
-            <NavLink to='/profile'>Profile</NavLink>
-            <NavLink to='/settings'>Réglages</NavLink>
-            <NavLink to='/community'>Communauté</NavLink>
+            <NavBar >
+                <StyledLink to='/'>Accueil</StyledLink>
+                <StyledLink to='/profile'>Profile</StyledLink>
+                <StyledLink to='/settings'>Réglages</StyledLink>
+                <StyledLink to='/community'>Communauté</StyledLink>
+            </NavBar>
         </HeaderWrapper>
     )
 }
