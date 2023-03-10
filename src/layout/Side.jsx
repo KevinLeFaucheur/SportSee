@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { SideButton } from "../components/SideButton"
+import { logos } from "../styles/logos"
 
 const SideWrapper = styled.div`
     display: flex;
@@ -15,10 +16,9 @@ const SideWrapper = styled.div`
 export const Side = () => {
     return (
         <SideWrapper>
-            <SideButton></SideButton>
-            <SideButton></SideButton>
-            <SideButton></SideButton>
-            <SideButton></SideButton>
+            {logos.map(
+                logo => <SideButton key={`button-${logo}`} logo={logo} />
+            )}
         </SideWrapper>
     )
 }

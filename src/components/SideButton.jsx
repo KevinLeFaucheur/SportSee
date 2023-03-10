@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import logo from "../styles/temp.svg"
 
 const Button = styled.button`
     width: 64px;
@@ -10,6 +11,7 @@ const Button = styled.button`
 
 export const SideButton = () => {
     return (
-        <Button />
+        <Button><img src={logo} alt="Zen" />
+        </Button>
     )
 }
