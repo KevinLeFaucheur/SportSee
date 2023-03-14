@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { dashboard } from "../styles/vitamins";
 import { Stat } from "../components/Stat";
+import { Chart as WeightChart } from "../components/BarChart"
+import { Chart as Objectives } from "../components/LineChart"
+import { Chart as Radar } from "../components/RadarChart"
+import { Chart as KPI } from "../components/PieChart"
 
 const HomeWrapper = styled.div`
   height: 779px;
-  width: 1126px;
+  width: 1350px;
 
   margin-left: 117px;
   padding: 100px;
@@ -47,7 +51,7 @@ const GraphWrapper = styled.div`
   flex-wrap: wrap;
   align-items: flex-end;
   height: 100%;
-  width: 70%;
+  width: 75%;
 `
 
 const GraphMain = styled.div`
@@ -75,7 +79,6 @@ const Graph = styled.div`
 `
 
 export const Home = () => {
-  {console.log(dashboard)}
   return (
     <HomeWrapper>
       <Head>
@@ -84,10 +87,10 @@ export const Home = () => {
       </Head>
       <Body>
         <GraphWrapper>
-          <Graph></Graph>
-          <Graph></Graph>
-          <Graph></Graph>
-          <Graph></Graph>
+          <Graph><WeightChart /></Graph>
+          <Graph><Objectives /></Graph>
+          <Graph><Radar /></Graph>
+          <Graph><KPI /></Graph>
         </GraphWrapper>
         <StatsWrapper>
           {dashboard.map((stat, index) => <Stat key={`dashboard-${index}`} stat={stat} />)}
