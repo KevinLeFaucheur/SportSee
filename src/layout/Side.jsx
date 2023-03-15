@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import { SideButton } from "../components/SideButton"
 import { sideBar } from "../styles/logos"
 
@@ -31,7 +32,10 @@ export const Side = () => {
     return (
         <SideWrapper>
             {logos.map(
-                (logo, index) => <SideButton key={`button-${index}`} logo={logo} />
+                (logo, index) =>  
+                    <Link to='/profile' >
+                        <SideButton key={`button-${index}`} logo={logo} />
+                    </Link>
             )}
             <Copyright>Copiryght, SportSee 2020</Copyright>
         </SideWrapper>
