@@ -5,6 +5,14 @@ import { Chart as WeightChart } from "../components/BarChart"
 import { Chart as Objectives } from "../components/LineChart"
 import { Chart as Radar } from "../components/RadarChart"
 import { Chart as KPI } from "../components/PieChart"
+import { useEffect, useState } from "react";
+import { 
+  getUser, 
+  getUserAge, 
+  getUserActivity, 
+  getUserAverageSessions, 
+  getUserPerformance 
+} from "../services";
 
 const HomeWrapper = styled.div`
   height: 779px;
@@ -91,10 +99,45 @@ const Graph = styled.div`
 `
 
 export const Home = () => {
-  return (
+  const [user, setUser] = useState(0);
+
+  useEffect(() => {  
+    // keyData: todayScore: userInfos:
+    const getUserData = async () => {
+      const user = await getUser(12);
+      setUser(user);
+    }  
+
+    // sessions [7] day: date, kilogram: calories:
+    // const getUserActivityData = async () => {
+    //   const user = await getUserActivity(12);
+    //   setUser(user);
+    // }  
+
+    // sessions [7] day: sessionLength:
+    // const getUserAverageSessionsData = async () => {
+    //   const user = await getUserAverageSessions(12);
+    //   setUser(user);
+    // }  
+
+    // data [6] kind [6]
+    // const getUserPerformanceData = async () => {
+    //   const user = await getUserPerformance(12);
+    //   setUser(user);
+    // }  
+
+    getUserData();
+    // getUserActivityData();
+    // getUserAverageSessionsData();
+    // getUserPerformanceData();
+  }, []);
+
+  return (user &&
     <HomeWrapper>
+      {console.log(user.data.userInfos.firstName)}
+      {/* {console.log(user.data)} */}
       <Head>
-          <h2>Bonjour Thomas</h2>
+          {<h2>Bonjour {user.data.userInfos.firstName}</h2>}
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>
