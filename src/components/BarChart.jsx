@@ -33,6 +33,7 @@ const data = [
 ];
 
 export const Chart = () => {
+
   return (
     <ResponsiveContainer height='100%' width='100%'>
       <BarChart
@@ -44,7 +45,7 @@ export const Chart = () => {
           right: 0,
           left: 50,
           bottom: 0,
-      }}>
+        }}>
         <CartesianGrid strokeDasharray="1 3" />
         <XAxis dataKey="day" ></XAxis>
         <YAxis tickCount={3} orientation='right' axisLine={false} />
