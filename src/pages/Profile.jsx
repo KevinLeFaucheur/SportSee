@@ -13,6 +13,7 @@ import {
   getUserAverageSessions, 
   getUserPerformance 
 } from "../services";
+import { useParams } from "react-router-dom";
 
 const ProfileWrapper = styled.div`
   height: 779px;
@@ -100,11 +101,12 @@ const Graph = styled.div`
 
 export const Profile = () => {
   const [user, setUser] = useState(0);
+  const { id } = useParams();
 
   useEffect(() => {  
     // keyData: todayScore: userInfos:
     const getUserData = async () => {
-      const user = await getUser(12);
+      const user = await getUser(id);
       setUser(user);
     }  
 
