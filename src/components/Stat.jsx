@@ -8,6 +8,10 @@ const StatWrapper = styled.div`
   background-color: #FBFBFB; 
   border-radius: 5px;
   padding: 32px;
+
+    @media (max-width: 768px) {
+        width: 48%;
+    }
 `
 
 const StatIcon = styled.div`

@@ -8,10 +8,12 @@ import { Chart as KPI } from "../components/PieChart"
 
 const HomeWrapper = styled.div`
   height: 779px;
-  width: 1350px;
-
   margin-left: 117px;
   padding: 100px;
+
+  @media (max-width: 768px) {
+    height: 100%;
+  }
 `
 
 const Head = styled.div`
@@ -37,12 +39,22 @@ const Body = styled.div`
   display: flex;
   justify-content: space-between;
   height: 100%;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    flex-direction: column;
+  }
 `
 
 const StatsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
 `
 
 const GraphWrapper = styled.div`

@@ -45,9 +45,9 @@ export const Chart = () => {
                 data={data} 
                 style={{ backgroundColor: '#282D30', borderRadius: '5px'  }}
                 margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
-                <PolarGrid />
+                <PolarGrid strokeDasharray="3 1 1" radialLines={false}/>
                 <PolarAngleAxis dataKey="property" />
-                {/* <PolarRadiusAxis angle={30} domain={[0, 20]} /> */}
+                {/* <PolarRadiusAxis /> */}
                 <Radar name="Mike" dataKey="value" stroke="#E60000" fill="#E60000" fillOpacity={0.6} />
                 {/* <Legend /> */}
             </RadarChart>
