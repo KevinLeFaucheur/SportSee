@@ -150,7 +150,7 @@ export const Profile = () => {
       <Body>
         <GraphWrapper>
           <Graph><WeightChart activityData={userActivity.data} /></Graph>
-          <Graph><Objectives /></Graph>
+          <Graph><Objectives averageSessionsData={userAverageSessions.data} /></Graph>
           <Graph><Radar /></Graph>
           <Graph><KPI /></Graph>
         </GraphWrapper>
