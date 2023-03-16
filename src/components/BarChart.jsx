@@ -8,9 +8,11 @@ import {
     XAxis, 
     YAxis 
 } from "recharts"; 
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
-export const Chart = ({ activityData }) => {
-  const { sessions, userId } = activityData;
+export const Chart = () => {
+  const { userActivity } = useContext(UserContext);
 
   // reformat to [1, 2, 3, 4, 5, 6, 7]
 
@@ -19,7 +21,7 @@ export const Chart = ({ activityData }) => {
       <BarChart
         width={700}
         height={300}
-        data={sessions}
+        data={userActivity}
         margin={{
           top: 0,
           right: 0,

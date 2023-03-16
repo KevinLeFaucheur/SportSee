@@ -3,17 +3,19 @@ import {
     PieChart, 
     ResponsiveContainer, 
 } from "recharts"; 
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
-export const Chart = ({ activityData }) => {
-    const { score, todayScore } = activityData;
+export const Chart = () => {
+    const { userInfos } = useContext(UserContext);
+    const { score, todayScore } = userInfos;
     let number = todayScore ? todayScore : score;
-    console.log(number);
 
     return (
         <ResponsiveContainer height='100%' width='100%'>
             <PieChart width={100} height={100} style={{ borderRadius: '5px' }}>
                 <Pie 
-                data={[activityData]} 
+                data={[userInfos]} 
                 dataKey={todayScore ? 'todayScore' : 'score'} 
                 nameKey="name" 
                 cx="50%" 

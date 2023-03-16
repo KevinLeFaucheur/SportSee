@@ -7,9 +7,11 @@ import {
     PolarAngleAxis, 
     PolarRadiusAxis, 
 } from "recharts"; 
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
-export const Chart = ({ performanceData }) => {
-    const { data, kind } = performanceData;
+export const Chart = () => {
+    const { userPerformance } = useContext(UserContext);
 
     return (
         <ResponsiveContainer height='100%' width='100%'>
@@ -17,11 +19,11 @@ export const Chart = ({ performanceData }) => {
                 outerRadius={90} 
                 width={730} 
                 height={250} 
-                data={data} 
+                data={userPerformance} 
                 style={{ backgroundColor: '#282D30', borderRadius: '5px'  }}
                 margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
                 <PolarGrid strokeDasharray="3 1 1" radialLines={false}/>
-                <PolarAngleAxis dataKey='kind' tickFormatter={tick => kind[tick]} />
+                <PolarAngleAxis dataKey='kind' tickFormatter={tick => userPerformance.kind[tick]} />
                 {/* <PolarRadiusAxis /> */}
                 <Radar name="" dataKey="value" stroke="#E60000" fill="#E60000" fillOpacity={0.6} />
                 {/* <Legend /> */}
