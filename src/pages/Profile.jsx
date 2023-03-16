@@ -152,7 +152,7 @@ export const Profile = () => {
           <Graph><WeightChart activityData={userActivity.data} /></Graph>
           <Graph><Objectives averageSessionsData={userAverageSessions.data} /></Graph>
           <Graph><Radar /></Graph>
-          <Graph><KPI /></Graph>
+          <Graph><KPI activityData={user.data} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
           {dashboard.map((stat, index) => <Stat key={`dashboard-${index}`} stat={stat} />)}
