@@ -151,7 +151,7 @@ export const Profile = () => {
         <GraphWrapper>
           <Graph><WeightChart activityData={userActivity.data} /></Graph>
           <Graph><Objectives averageSessionsData={userAverageSessions.data} /></Graph>
-          <Graph><Radar /></Graph>
+          <Graph><Radar performanceData={userPerformance.data} /></Graph>
           <Graph><KPI activityData={user.data} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
