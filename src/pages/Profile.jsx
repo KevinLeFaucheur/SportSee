@@ -100,7 +100,10 @@ const Graph = styled.div`
 `
 
 export const Profile = () => {
-  const [user, setUser] = useState(0);
+  const [user, setUser] = useState(null);
+  const [userActivity, setUserActivity] = useState([]);
+  const [userAverageSessions, setUserAverageSessions] = useState([]);
+  const [userPerformance, setUserPerformance] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {  
@@ -109,42 +112,44 @@ export const Profile = () => {
       const user = await getUser(id);
       setUser(user);
     }  
-
+    
     // sessions [7] day: date, kilogram: calories:
-    // const getUserActivityData = async () => {
-    //   const user = await getUserActivity(12);
-    //   setUser(user);
-    // }  
+    const getUserActivityData = async () => {
+      const userActivityData = await getUserActivity(id);
+      setUserActivity(userActivityData);
+    }  
 
     // sessions [7] day: sessionLength:
-    // const getUserAverageSessionsData = async () => {
-    //   const user = await getUserAverageSessions(12);
-    //   setUser(user);
-    // }  
+    const getUserAverageSessionsData = async () => {
+      const userAverageSessionsData = await getUserAverageSessions(id);
+      setUserAverageSessions(userAverageSessionsData);
+    }  
 
     // data [6] kind [6]
-    // const getUserPerformanceData = async () => {
-    //   const user = await getUserPerformance(12);
-    //   setUser(user);
-    // }  
+    const getUserPerformanceData = async () => {
+      const userPerformanceData = await getUserPerformance(id);
+      setUserPerformance(userPerformanceData);
+    }  
 
     getUserData();
-    // getUserActivityData();
-    // getUserAverageSessionsData();
-    // getUserPerformanceData();
-  }, []);
+    getUserActivityData();
+    getUserAverageSessionsData();
+    getUserPerformanceData();
+  }, [id]);
 
   return (user &&
     <ProfileWrapper>
-      {console.log(user.data.userInfos.firstName)}
-      {/* {console.log(user.data)} */}
+      {console.log(user.data.userInfos)}
+      {console.log(userActivity)}
+      {console.log(userAverageSessions)}
+      {console.log(userPerformance)}
       <Head>
           {<h2>Bonjour {user.data.userInfos.firstName}</h2>}
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>
         <GraphWrapper>
-          <Graph><WeightChart /></Graph>
+          <Graph><WeightChart activityData={userActivity.data} /></Graph>
           <Graph><Objectives /></Graph>
           <Graph><Radar /></Graph>
           <Graph><KPI /></Graph>

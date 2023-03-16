@@ -33,8 +33,8 @@ export const Side = () => {
         <SideWrapper>
             {logos.map(
                 (logo, index) =>  
-                    <Link to='/profile' >
-                        <SideButton key={`button-${index}`} logo={logo} />
+                    <Link key={`button-${index}`} to='/profile' >
+                        <SideButton logo={logo} />
                     </Link>
             )}
             <Copyright>Copiryght, SportSee 2020</Copyright>
