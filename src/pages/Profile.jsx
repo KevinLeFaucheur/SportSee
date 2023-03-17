@@ -6,13 +6,7 @@ import { Chart as Objectives } from "../components/LineChart"
 import { Chart as Radar } from "../components/RadarChart"
 import { Chart as KPI } from "../components/PieChart"
 import { useEffect, useState } from "react";
-import { 
-  getUser, 
-  getUserAge, 
-  getUserActivity, 
-  getUserAverageSessions, 
-  getUserPerformance 
-} from "../services";
+import { getUser } from "../services";
 import { useParams } from "react-router-dom";
 
 const ProfileWrapper = styled.div`
@@ -101,12 +95,15 @@ const Graph = styled.div`
 
 export const Profile = () => {
   const [userFirstName, setUserFirstName] = useState(null);
+  const [userKeyData, setUserKeyData] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {  
     const getUserData = async () => {
       const { data } = await getUser(id);
       setUserFirstName(data.userInfos.firstName);
+      setUserKeyData(data.keyData);
+      console.log(data.keyData);
     }  
 
     getUserData();
