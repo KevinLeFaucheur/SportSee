@@ -5,7 +5,7 @@ import { Chart as Objectives } from "../components/LineChart"
 import { Chart as Radar } from "../components/RadarChart"
 import { Chart as KPI } from "../components/PieChart"
 import { useEffect, useState } from "react";
-import { getUser } from "../services";
+import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
 import { useParams } from "react-router-dom";
 import iconCalorie from "../assets/icon_calorie.svg"
 import iconProtein from "../assets/icon_protein.svg"
@@ -112,6 +112,10 @@ const Graph = styled.div`
 export const Profile = () => {
   const [userFirstName, setUserFirstName] = useState(null);
   const [userKeyData, setUserKeyData] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [userActivity, setUserActivity] = useState([]);
+  const [userAverageSessions, setUserAverageSessions] = useState([]);
+  const [userPerformance, setUserPerformance] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {  
@@ -119,8 +123,29 @@ export const Profile = () => {
       const { data } = await getUser(id);
       setUserFirstName(data.userInfos.firstName);
       setUserKeyData(data.keyData);
+      setUserData(data);
+      console.log('user', data);
     }  
 
+    const getUserActivityData = async () => {
+      const { data } = await getUserActivity(id);
+      setUserActivity(data);
+    }  
+
+    const getUserAverageSessionsData = async () => {
+      const { data } = await getUserAverageSessions(id);
+      setUserAverageSessions(data);
+    }  
+
+    const getUserPerformanceData = async () => {
+      const { data } = await getUserPerformance(id);
+      setUserPerformance(data);
+      console.log('perf', data);
+    }  
+
+    getUserPerformanceData();
+    getUserAverageSessionsData();
+    getUserActivityData();
     getUserData();
 
   }, [id]);
@@ -133,10 +158,10 @@ export const Profile = () => {
       </Head>
       <Body>
         <GraphWrapper>
-          <Graph><WeightChart /></Graph>
-          <Graph><Objectives /></Graph>
-          <Graph><Radar /></Graph>
-          <Graph><KPI /></Graph>
+          <Graph>{userActivity.sessions !== undefined ? <WeightChart userActivity={userActivity} /> : ''}</Graph>
+          <Graph>{userAverageSessions.userId !== undefined ? <Objectives userAverageSessions={userAverageSessions} /> : ''}</Graph>
+          <Graph>{userPerformance.userId !== undefined ? <Radar userPerformance={userPerformance}/> : ''}</Graph>
+          <Graph>{userData.id !== undefined ? <KPI userData={userData} /> : ''}</Graph>
         </GraphWrapper>
         <StatsWrapper>
           {icons.map((icon, index) =>

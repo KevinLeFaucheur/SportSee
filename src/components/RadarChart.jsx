@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserPerformance } from "../services";
+import PropTypes from 'prop-types';
 import { 
     Radar, 
     RadarChart, 
@@ -11,18 +12,18 @@ import {
     PolarRadiusAxis, 
 } from "recharts"; 
 
-export const Chart = () => {
-    const [userPerformance, setUserPerformance] = useState([]);
+export const Chart = ({ userPerformance }) => {
+    // const [userPerformance, setUserPerformance] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {  
 
-      const getUserPerformanceData = async () => {
-        const { data } = await getUserPerformance(id);
-        setUserPerformance(data);
-      }  
+    //   const getUserPerformanceData = async () => {
+    //     const { data } = await getUserPerformance(id);
+    //     setUserPerformance(data);
+    //   }  
 
-      getUserPerformanceData();
+    //   getUserPerformanceData();
     }, [id]);
 
     return (userPerformance.data &&
@@ -42,4 +43,17 @@ export const Chart = () => {
             </RadarChart>
         </ResponsiveContainer>
     )
-}
+};
+
+Chart.propTypes = {
+    userPerformance: PropTypes.shape({
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                value: PropTypes.number,
+                kind: PropTypes.number,
+            })
+        ),
+        kind: PropTypes.objectOf(PropTypes.string),
+        userId: PropTypes.number
+    })
+};

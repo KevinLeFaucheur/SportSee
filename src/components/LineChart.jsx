@@ -11,18 +11,19 @@ import {
     YAxis 
 } from "recharts"; 
 import { getUserAverageSessions } from "../services";
+import PropTypes from 'prop-types';
 
-export const Chart = () => {
-    const [userAverageSessions, setUserAverageSessions] = useState([]);
+export const Chart = ({ userAverageSessions }) => {
+    // const [userAverageSessions, setUserAverageSessions] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {  
-      const getUserAverageSessionsData = async () => {
-        const { data } = await getUserAverageSessions(id);
-        setUserAverageSessions(data);
-      }  
+    //   const getUserAverageSessionsData = async () => {
+    //     const { data } = await getUserAverageSessions(id);
+    //     setUserAverageSessions(data);
+    //   }  
   
-      getUserAverageSessionsData();
+    //   getUserAverageSessionsData();
     }, [id]);
 
     return (
@@ -37,4 +38,15 @@ export const Chart = () => {
             </LineChart>
         </ResponsiveContainer>
     )
-}
+};
+
+Chart.propTypes = {
+    userAverageSessions: PropTypes.shape({
+        sessions: PropTypes.arrayOf(
+          PropTypes.shape({
+            day: PropTypes.number,
+            sessionLength: PropTypes.number,
+        })),
+        userId: PropTypes.number
+    })
+};

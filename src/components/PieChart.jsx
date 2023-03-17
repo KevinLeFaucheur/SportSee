@@ -6,34 +6,35 @@ import {
     ResponsiveContainer, 
 } from "recharts"; 
 import { getUser } from "../services";
+import PropTypes from 'prop-types';
 
-export const Chart = () => {
-    const [userInfos, setUserInfos] = useState([]);
-    const { score, todayScore } = userInfos;
+export const Chart = ({ userData }) => {
+    // const [userInfos, setUserInfos] = useState([]);
+    const { score, todayScore } = userData;
     let number = todayScore ? todayScore : score;
     const { id } = useParams();
     // let number = userInfos?.todayScore ? userInfos?.todayScore : userInfos?.score;
     // userInfos.todayScore ? userInfos.todayScore : userInfos.score
 
     const chartData = [
-        { name: 'score', value: userInfos.todayScore },
+        { name: 'score', value: userData.todayScore },
         { name: 'max', value: 1 }
      ];
 
     useEffect(() => {  
-      const getUserData = async () => {
-        const { data } = await getUser(id);
-        setUserInfos(data);
-      }  
+    //   const getUserData = async () => {
+    //     const { data } = await getUser(id);
+    //     setUserInfos(data);
+    //   }  
   
-      getUserData();
+    //   getUserData();
     }, [id]);
 
     return (
         <ResponsiveContainer height='100%' width='100%'>
             <PieChart width={100} height={100} style={{ borderRadius: '5px' }}>
                 <Pie 
-                data={[userInfos]} 
+                data={[userData]} 
                 dataKey={todayScore ? 'todayScore' : 'score'} 
                 nameKey="name" 
                 cx="50%" 
@@ -50,4 +51,23 @@ export const Chart = () => {
             </PieChart>
         </ResponsiveContainer>
     )
-}
+};
+
+
+Chart.propTypes = {
+    userData: PropTypes.shape({
+        id: PropTypes.number,
+        keyData: PropTypes.shape({
+            calorieCount: PropTypes.number,
+            carbohydrateCount: PropTypes.number,
+            lipidCount: PropTypes.number,
+            proteinCount: PropTypes.number,
+        }),
+        todayScore: PropTypes.number,
+        userInfos:PropTypes.shape({
+            age: PropTypes.number,
+            firstName: PropTypes.string,
+            lastName: PropTypes.string,
+        })
+    })
+};

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { 
     Bar, 
@@ -10,20 +10,21 @@ import {
     XAxis, 
     YAxis 
 } from "recharts"; 
-import { getUserActivity } from "../services";
+import PropTypes from 'prop-types';
 
-export const Chart = () => {
-  const [userActivity, setUserActivity] = useState([]);
+export const Chart = ({ userActivity }) => {
+  // const [userActivity, setUserActivity] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {  
     
-    const getUserActivityData = async () => {
-      const { data } = await getUserActivity(id);
-      setUserActivity(data);
-    }  
+    // const getUserActivityData = async () => {
+    //   const { data } = await getUserActivity(id);
+    //   setUserActivity(data);
+    //   console.log(data);
+    // }  
 
-    getUserActivityData();
+    // getUserActivityData();
 
   }, [id]);
 
@@ -40,7 +41,7 @@ export const Chart = () => {
           bottom: 0,
         }}>
         <CartesianGrid strokeDasharray="1 3" />
-        <XAxis dataKey='day' tickFormatter={(tick, index) => index + 1} />
+        <XAxis dataKey='day' tickFormatter={(_, index) => index + 1} />
         <YAxis tickCount={3} orientation='right' axisLine={false} />
         <Tooltip />
         <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={100} />
@@ -49,4 +50,16 @@ export const Chart = () => {
       </BarChart>
     </ResponsiveContainer>
   )
+};
+
+Chart.propTypes = {
+  userActivity: PropTypes.shape({
+    sessions: PropTypes.arrayOf(
+      PropTypes.shape({
+        day: PropTypes.string,
+        kilogram: PropTypes.number,
+        calories: PropTypes.number,
+    })),
+    userId: PropTypes.number
+  })
 };
