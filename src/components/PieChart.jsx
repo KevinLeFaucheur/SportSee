@@ -44,8 +44,9 @@ export const Chart = () => {
                 outerRadius={90}  
                 cornerRadius={5}
                 fill="#E60000" />
-                <text x='50%' y='45%' textAnchor="middle" dominantBaseline="middle">{todayScore}%</text>
-                <text x='50%' y='55%' textAnchor="middle" dominantBaseline="middle">de votre objectif</text>
+                <text x='50%' y='43%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontWeight={700} fontSize={26}>{todayScore}%</text>
+                <text x='50%' y='53%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontSize={16}>de votre</text>
+                <text x='50%' y='60%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontSize={16}>objectif</text>
             </PieChart>
         </ResponsiveContainer>
     )

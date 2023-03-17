@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { getUser } from "../services";
 
 const StatWrapper = styled.div`
   display: flex;
@@ -51,15 +54,15 @@ const StatLabel = styled.p`
     text-align: left;
 `
 
-export const Stat = ({ stat }) => {
-    const { logo, amount, label } = stat;
+export const Stat = ({ logo, userKeyData }) => {
+    const [label, amount] = userKeyData;
 
     return (
         <StatWrapper>
             <StatIcon dangerouslySetInnerHTML={{__html: logo}}/>
             <StatText>
-                <StatAmount>{amount}</StatAmount>
-                <StatLabel>{label}</StatLabel>
+                <StatAmount>{label && (label.charAt(0).toUpperCase() + label.slice(1)).replace(/Count/g, '')}</StatAmount>
+                <StatLabel>{amount && amount + 'g'}</StatLabel>
             </StatText>
         </StatWrapper>
     )

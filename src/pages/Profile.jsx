@@ -103,7 +103,6 @@ export const Profile = () => {
       const { data } = await getUser(id);
       setUserFirstName(data.userInfos.firstName);
       setUserKeyData(data.keyData);
-      console.log(data.keyData);
     }  
 
     getUserData();
@@ -124,7 +123,9 @@ export const Profile = () => {
           <Graph><KPI /></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {dashboard.map((stat, index) => <Stat key={`dashboard-${index}`} stat={stat} />)}
+          {dashboard.map((stat, index) =>
+              <Stat key={`dashboard-${index}`} logo={stat.logo} userKeyData={[Object.keys(userKeyData)[index], Object.values(userKeyData)[index]]} />
+          )}
         </StatsWrapper>
       </Body>
     </ProfileWrapper>

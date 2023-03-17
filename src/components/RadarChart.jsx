@@ -20,7 +20,6 @@ export const Chart = () => {
       const getUserPerformanceData = async () => {
         const { data } = await getUserPerformance(id);
         setUserPerformance(data);
-        console.log(data);
       }  
 
       getUserPerformanceData();
