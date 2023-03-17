@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { dashboard } from "../styles/vitamins";
 import { Stat } from "../components/Stat";
 import { Chart as WeightChart } from "../components/BarChart"
 import { Chart as Objectives } from "../components/LineChart"
@@ -8,6 +7,17 @@ import { Chart as KPI } from "../components/PieChart"
 import { useEffect, useState } from "react";
 import { getUser } from "../services";
 import { useParams } from "react-router-dom";
+import iconCalorie from "../assets/icon_calorie.svg"
+import iconProtein from "../assets/icon_protein.svg"
+import iconGlucide from "../assets/icon_glucide.svg"
+import iconLipid from "../assets/icon_lipid.svg"
+
+const icons = [
+    {src: iconCalorie, alt: 'Calories'}, 
+    {src: iconProtein, alt: 'Proteins'}, 
+    {src: iconGlucide, alt: 'CarboHydrates'}, 
+    {src: iconLipid, alt: 'Lipids'}
+];
 
 const ProfileWrapper = styled.div`
   height: 779px;
@@ -123,8 +133,8 @@ export const Profile = () => {
           <Graph><KPI /></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {dashboard.map((stat, index) =>
-              <Stat key={`dashboard-${index}`} logo={stat.logo} userKeyData={[Object.keys(userKeyData)[index], Object.values(userKeyData)[index]]} />
+          {icons.map((icon, index) =>
+              <Stat key={`dashboard-${index}`} icon={icon} userKeyData={[Object.keys(userKeyData)[index], Object.values(userKeyData)[index]]} />
           )}
         </StatsWrapper>
       </Body>

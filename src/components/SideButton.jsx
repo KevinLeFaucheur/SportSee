@@ -8,8 +8,11 @@ const Button = styled.button`
     margin-bottom: 20px;
 `
 
-export const SideButton = ({ logo }) => {
+export const SideButton = ({ icon }) => {
+    const { src, alt } = icon;
     return (
-        <Button dangerouslySetInnerHTML={{__html: logo}}></Button>
+        <Button>
+            <img src={src} alt={alt} />
+        </Button>
     )
 }

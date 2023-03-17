@@ -54,12 +54,15 @@ const StatLabel = styled.p`
     text-align: left;
 `
 
-export const Stat = ({ logo, userKeyData }) => {
+export const Stat = ({ icon, userKeyData }) => {
+    const { src, alt } = icon;
     const [label, amount] = userKeyData;
 
     return (
         <StatWrapper>
-            <StatIcon dangerouslySetInnerHTML={{__html: logo}}/>
+            <StatIcon>
+                <img src={src} alt={alt} />
+            </StatIcon>
             <StatText>
                 <StatAmount>{label && (label.charAt(0).toUpperCase() + label.slice(1)).replace(/Count/g, '')}</StatAmount>
                 <StatLabel>{amount && amount + 'g'}</StatLabel>

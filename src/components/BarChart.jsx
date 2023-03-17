@@ -27,8 +27,6 @@ export const Chart = () => {
 
   }, [id]);
 
-  // reformat to [1, 2, 3, 4, 5, 6, 7]
-
   return (
     <ResponsiveContainer height='100%' width='100%'>
       <BarChart
@@ -42,7 +40,7 @@ export const Chart = () => {
           bottom: 0,
         }}>
         <CartesianGrid strokeDasharray="1 3" />
-        <XAxis dataKey='day' tickFormatter={(tick, index) => index + 1} ></XAxis>
+        <XAxis dataKey='day' tickFormatter={(tick, index) => index + 1} />
         <YAxis tickCount={3} orientation='right' axisLine={false} />
         <Tooltip />
         <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={100} />

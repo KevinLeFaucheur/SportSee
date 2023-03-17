@@ -1,7 +1,17 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { SideButton } from "../components/SideButton"
-import { sideBar } from "../styles/logos"
+import iconZen from "../assets/icon_zen.svg"
+import iconSwim from "../assets/icon_swim.svg"
+import iconBicycle from "../assets/icon_bicycle.svg"
+import iconLift from "../assets/icon_lift.svg"
+
+const icons = [
+    {src: iconZen, alt: 'Zen'}, 
+    {src: iconSwim, alt: 'Swimming'}, 
+    {src: iconBicycle, alt: 'Bicycle'}, 
+    {src: iconLift, alt: 'Lifting'}
+];
 
 const SideWrapper = styled.div`
     display: flex;
@@ -27,14 +37,12 @@ const Copyright = styled.p`
 `
 
 export const Side = () => {
-    const logos = Object.values(sideBar);
-
     return (
         <SideWrapper>
-            {logos.map(
-                (logo, index) =>  
+            {icons.map(
+                (icon, index) =>  
                     <Link key={`button-${index}`} to='/profile' >
-                        <SideButton logo={logo} />
+                        <SideButton icon={icon} />
                     </Link>
             )}
             <Copyright>Copiryght, SportSee 2020</Copyright>

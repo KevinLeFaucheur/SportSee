@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom"
 import styled from "styled-components"
-import { SportSeeLogo } from "../components/SportSeeLogo"
+import { HeaderLogo } from "../components/HeaderLogo"
+import logoSportSee from "../assets/logo_sportsee.svg"
+
+const logo = { src: logoSportSee, alt: 'SportSee' };
 
 const HeaderWrapper = styled.div`
     width: 100%;
@@ -24,7 +27,7 @@ export const Header = () => {
     return (
         <HeaderWrapper>
             <NavBar >
-                <SportSeeLogo />
+                <HeaderLogo logo={logo} />
                 <StyledLink to='/'>Accueil</StyledLink>
                 <StyledLink to='/profile'>Profile</StyledLink>
                 <StyledLink to='/settings'>Réglages</StyledLink>
