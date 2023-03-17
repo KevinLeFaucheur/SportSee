@@ -110,21 +110,17 @@ const Graph = styled.div`
 `
 
 export const Profile = () => {
-  const [userFirstName, setUserFirstName] = useState(null);
-  const [userKeyData, setUserKeyData] = useState([]);
-  const [userData, setUserData] = useState([]);
-  const [userActivity, setUserActivity] = useState([]);
-  const [userAverageSessions, setUserAverageSessions] = useState([]);
-  const [userPerformance, setUserPerformance] = useState([]);
+  const [userData, setUserData] = useState();
+  const [userActivity, setUserActivity] = useState();
+  const [userAverageSessions, setUserAverageSessions] = useState();
+  const [userPerformance, setUserPerformance] = useState();
+  // const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {  
     const getUserData = async () => {
       const { data } = await getUser(id);
-      setUserFirstName(data.userInfos.firstName);
-      setUserKeyData(data.keyData);
       setUserData(data);
-      console.log('user', data);
     }  
 
     const getUserActivityData = async () => {
@@ -140,9 +136,24 @@ export const Profile = () => {
     const getUserPerformanceData = async () => {
       const { data } = await getUserPerformance(id);
       setUserPerformance(data);
-      console.log('perf', data);
     }  
 
+    // const getAllUserData = async () => {
+      
+      
+    //   const { userData } = await getUser(id);
+    //   const { activityData } = await getUserActivity(id);
+    //   const { sessionsData } = await getUserAverageSessions(id);
+    //   const { perfData } = await getUserPerformance(id);
+      
+    //   setUserData(userData);
+    //   setUserActivity(activityData);
+    //   setUserAverageSessions(sessionsData);
+    //   setUserPerformance(perfData);
+    // }  
+    
+    // getAllUserData();
+    // setLoading(false);
     getUserPerformanceData();
     getUserAverageSessionsData();
     getUserActivityData();
@@ -150,22 +161,22 @@ export const Profile = () => {
 
   }, [id]);
 
-  return (
+  return (/*!loading &&*/
     <ProfileWrapper>
       <Head>
-          {<h2>Bonjour <FirstName>{userFirstName}</FirstName></h2>}
+          {<h2>Bonjour <FirstName>{userData && userData.userInfos.firstName}</FirstName></h2>}
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>
         <GraphWrapper>
-          <Graph>{userActivity.sessions !== undefined ? <WeightChart userActivity={userActivity} /> : ''}</Graph>
-          <Graph>{userAverageSessions.userId !== undefined ? <Objectives userAverageSessions={userAverageSessions} /> : ''}</Graph>
-          <Graph>{userPerformance.userId !== undefined ? <Radar userPerformance={userPerformance}/> : ''}</Graph>
-          <Graph>{userData.id !== undefined ? <KPI userData={userData} /> : ''}</Graph>
+          <Graph>{userActivity && <WeightChart userActivity={userActivity} />}</Graph>
+          <Graph>{userAverageSessions && <Objectives userAverageSessions={userAverageSessions} />}</Graph>
+          <Graph>{userPerformance && <Radar userPerformance={userPerformance}/>}</Graph>
+          <Graph>{userData && <KPI userData={userData} />}</Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {icons.map((icon, index) =>
-              <Stat key={`dashboard-${index}`} icon={icon} userKeyData={[Object.keys(userKeyData)[index], Object.values(userKeyData)[index]]} />
+          {userData && icons.map((icon, index) =>
+              <Stat key={`dashboard-${index}`} icon={icon} userKeyData={[Object.keys(userData.keyData)[index], Object.values(userData.keyData)[index]]} />
           )}
         </StatsWrapper>
       </Body>
