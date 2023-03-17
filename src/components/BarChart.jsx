@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { 
     Bar, 
     BarChart, 
@@ -8,9 +10,22 @@ import {
     XAxis, 
     YAxis 
 } from "recharts"; 
+import { getUserActivity } from "../services";
 
-export const Chart = ({ activityData }) => {
-  const { sessions, userId } = activityData;
+export const Chart = () => {
+  const [userActivity, setUserActivity] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {  
+    
+    const getUserActivityData = async () => {
+      const { data } = await getUserActivity(id);
+      setUserActivity(data);
+    }  
+
+    getUserActivityData();
+
+  }, [id]);
 
   // reformat to [1, 2, 3, 4, 5, 6, 7]
 
@@ -19,7 +34,7 @@ export const Chart = ({ activityData }) => {
       <BarChart
         width={700}
         height={300}
-        data={sessions}
+        data={userActivity.sessions}
         margin={{
           top: 0,
           right: 0,

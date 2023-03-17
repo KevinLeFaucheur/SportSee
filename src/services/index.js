@@ -4,11 +4,6 @@ const API_URL = 'http://localhost:3000/';
 
 export const getUser = async (userId) => {
     try {
-        // return Axios   
-        //         .get(`${API_URL}user/${userId}`)
-        //         .then((response) => {
-        //             console.log(response.data.data);
-        //         });
         const { data } = await axios.get(`${API_URL}user/${userId}`);
         return data;
     } catch (error) { console.log(error); }

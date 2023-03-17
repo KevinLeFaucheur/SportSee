@@ -100,59 +100,31 @@ const Graph = styled.div`
 `
 
 export const Profile = () => {
-  const [user, setUser] = useState(null);
-  const [userActivity, setUserActivity] = useState([]);
-  const [userAverageSessions, setUserAverageSessions] = useState([]);
-  const [userPerformance, setUserPerformance] = useState([]);
+  const [userFirstName, setUserFirstName] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {  
-    // keyData: todayScore: userInfos:
     const getUserData = async () => {
-      const user = await getUser(id);
-      setUser(user);
-    }  
-    
-    // sessions [7] day: date, kilogram: calories:
-    const getUserActivityData = async () => {
-      const userActivityData = await getUserActivity(id);
-      setUserActivity(userActivityData);
-    }  
-
-    // sessions [7] day: sessionLength:
-    const getUserAverageSessionsData = async () => {
-      const userAverageSessionsData = await getUserAverageSessions(id);
-      setUserAverageSessions(userAverageSessionsData);
-    }  
-
-    // data [6] kind [6]
-    const getUserPerformanceData = async () => {
-      const userPerformanceData = await getUserPerformance(id);
-      setUserPerformance(userPerformanceData);
+      const { data } = await getUser(id);
+      setUserFirstName(data.userInfos.firstName);
     }  
 
     getUserData();
-    getUserActivityData();
-    getUserAverageSessionsData();
-    getUserPerformanceData();
+
   }, [id]);
 
-  return (user &&
+  return (
     <ProfileWrapper>
-      {console.log(user.data.userInfos)}
-      {console.log(userActivity)}
-      {console.log(userAverageSessions)}
-      {console.log(userPerformance)}
       <Head>
-          {<h2>Bonjour {user.data.userInfos.firstName}</h2>}
+          {<h2>Bonjour {userFirstName}</h2>}
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>
         <GraphWrapper>
-          <Graph><WeightChart activityData={userActivity.data} /></Graph>
-          <Graph><Objectives averageSessionsData={userAverageSessions.data} /></Graph>
-          <Graph><Radar performanceData={userPerformance.data} /></Graph>
-          <Graph><KPI activityData={user.data} /></Graph>
+          <Graph><WeightChart /></Graph>
+          <Graph><Objectives /></Graph>
+          <Graph><Radar /></Graph>
+          <Graph><KPI /></Graph>
         </GraphWrapper>
         <StatsWrapper>
           {dashboard.map((stat, index) => <Stat key={`dashboard-${index}`} stat={stat} />)}
