@@ -42,7 +42,7 @@ export const Chart = () => {
           bottom: 0,
         }}>
         <CartesianGrid strokeDasharray="1 3" />
-        <XAxis dataKey='day' ></XAxis>
+        <XAxis dataKey='day' tickFormatter={(tick, index) => index + 1} ></XAxis>
         <YAxis tickCount={3} orientation='right' axisLine={false} />
         <Tooltip />
         <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={100} />
