@@ -38,14 +38,20 @@ const Head = styled.div`
     font-size: 48px;
     line-height: 24px;
     margin: 0 0 41px;
+    
   }
-
+  
+  
   p {
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
     margin: 0 0 77px;
   }
+  `
+
+const FirstName = styled.span`
+  color: rgb(230, 0, 0);
 `
 
 const Body = styled.div`
@@ -122,7 +128,7 @@ export const Profile = () => {
   return (
     <ProfileWrapper>
       <Head>
-          {<h2>Bonjour {userFirstName}</h2>}
+          {<h2>Bonjour <FirstName>{userFirstName}</FirstName></h2>}
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>
