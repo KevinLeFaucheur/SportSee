@@ -15,7 +15,7 @@ export const Chart = ({ userPerformance }) => {
      const [isLoading, setIsLoading] = useState(true);
    
      useEffect(() => {  
-       setIsLoading(userPerformance === undefined ? true : false);
+       setIsLoading(userPerformance === undefined);
      }, [userPerformance]);
 
     return (isLoading ? <Loading /> :

@@ -61,7 +61,7 @@ export const Stat = ({ icon, userKeyData }) => {
     const [isLoading, setIsLoading] = useState(true);
   
     useEffect(() => {  
-      setIsLoading(userKeyData === undefined ? true : false);
+      setIsLoading(userKeyData === undefined);
     }, [userKeyData]);
 
     return (isLoading ? <Loading /> :

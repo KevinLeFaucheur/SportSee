@@ -17,7 +17,7 @@ export const Chart = ({ userAverageSessions }) => {
     const [isLoading, setIsLoading] = useState(true);
   
     useEffect(() => {  
-      setIsLoading(userAverageSessions === undefined ? true : false);  
+      setIsLoading(userAverageSessions === undefined);  
     }, [userAverageSessions]);
 
     return (isLoading ? <Loading /> :
