@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getUserPerformance } from "../services";
 import PropTypes from 'prop-types';
 import { 
     Radar, 
@@ -11,22 +9,16 @@ import {
     PolarAngleAxis, 
     PolarRadiusAxis, 
 } from "recharts"; 
+import { Loading } from "./Loading";
 
 export const Chart = ({ userPerformance }) => {
-    // const [userPerformance, setUserPerformance] = useState([]);
-    const { id } = useParams();
+     const [isLoading, setIsLoading] = useState(true);
+   
+     useEffect(() => {  
+       setIsLoading(userPerformance === undefined ? true : false);
+     }, [userPerformance]);
 
-    useEffect(() => {  
-
-    //   const getUserPerformanceData = async () => {
-    //     const { data } = await getUserPerformance(id);
-    //     setUserPerformance(data);
-    //   }  
-
-    //   getUserPerformanceData();
-    }, [id]);
-
-    return (userPerformance.data &&
+    return (isLoading ? <Loading /> :
         <ResponsiveContainer height='100%' width='100%'>
             <RadarChart 
                 outerRadius={50} 

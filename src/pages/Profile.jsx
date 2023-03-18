@@ -114,7 +114,6 @@ export const Profile = () => {
   const [userActivity, setUserActivity] = useState();
   const [userAverageSessions, setUserAverageSessions] = useState();
   const [userPerformance, setUserPerformance] = useState();
-  // const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {  
@@ -161,7 +160,7 @@ export const Profile = () => {
 
   }, [id]);
 
-  return (/*!loading &&*/
+  return (
     <ProfileWrapper>
       <Head>
           {<h2>Bonjour <FirstName>{userData && userData.userInfos.firstName}</FirstName></h2>}
@@ -169,9 +168,9 @@ export const Profile = () => {
       </Head>
       <Body>
         <GraphWrapper>
-          <Graph>{userActivity && <WeightChart userActivity={userActivity} />}</Graph>
-          <Graph>{userAverageSessions && <Objectives userAverageSessions={userAverageSessions} />}</Graph>
-          <Graph>{userPerformance && <Radar userPerformance={userPerformance}/>}</Graph>
+          <Graph><WeightChart userActivity={userActivity} /></Graph>
+          <Graph><Objectives userAverageSessions={userAverageSessions} /></Graph>
+          <Graph><Radar userPerformance={userPerformance}/></Graph>
           <Graph>{userData && <KPI userData={userData} />}</Graph>
         </GraphWrapper>
         <StatsWrapper>

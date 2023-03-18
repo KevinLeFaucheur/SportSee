@@ -1,36 +1,28 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { 
     Pie, 
     PieChart, 
     ResponsiveContainer, 
 } from "recharts"; 
-import { getUser } from "../services";
 import PropTypes from 'prop-types';
+import { Loading } from "./Loading";
 
 export const Chart = ({ userData }) => {
-    // const [userInfos, setUserInfos] = useState([]);
     const { score, todayScore } = userData;
     let number = todayScore ? todayScore : score;
-    const { id } = useParams();
-    // let number = userInfos?.todayScore ? userInfos?.todayScore : userInfos?.score;
-    // userInfos.todayScore ? userInfos.todayScore : userInfos.score
 
     const chartData = [
         { name: 'score', value: userData.todayScore },
         { name: 'max', value: 1 }
      ];
 
-    useEffect(() => {  
-    //   const getUserData = async () => {
-    //     const { data } = await getUser(id);
-    //     setUserInfos(data);
-    //   }  
-  
-    //   getUserData();
-    }, [id]);
+     const [isLoading, setIsLoading] = useState(true);
+   
+     useEffect(() => {  
+       setIsLoading(userData === undefined ? true : false);
+     }, [userData]);
 
-    return (
+    return (isLoading ? <Loading /> :
         <ResponsiveContainer height='100%' width='100%'>
             <PieChart width={100} height={100} style={{ borderRadius: '5px' }}>
                 <Pie 

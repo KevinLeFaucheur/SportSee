@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getUser } from "../services";
+import { Loading } from "./Loading";
 
 const StatWrapper = styled.div`
   display: flex;
@@ -57,8 +58,13 @@ const StatLabel = styled.p`
 export const Stat = ({ icon, userKeyData }) => {
     const { src, alt } = icon;
     const [label, amount] = userKeyData;
+    const [isLoading, setIsLoading] = useState(true);
+  
+    useEffect(() => {  
+      setIsLoading(userKeyData === undefined ? true : false);
+    }, [userKeyData]);
 
-    return (
+    return (isLoading ? <Loading /> :
         <StatWrapper>
             <StatIcon>
                 <img src={src} alt={alt} />

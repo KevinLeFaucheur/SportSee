@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { 
     Bar, 
     BarChart, 
@@ -11,24 +10,16 @@ import {
     YAxis 
 } from "recharts"; 
 import PropTypes from 'prop-types';
+import { Loading } from "./Loading";
 
 export const Chart = ({ userActivity }) => {
-  // const [userActivity, setUserActivity] = useState([]);
-  const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {  
-    
-    // const getUserActivityData = async () => {
-    //   const { data } = await getUserActivity(id);
-    //   setUserActivity(data);
-    //   console.log(data);
-    // }  
+    setIsLoading(userActivity === undefined ? true : false);
+  }, [userActivity]);
 
-    // getUserActivityData();
-
-  }, [id]);
-
-  return (
+  return (isLoading ? <Loading /> :
     <ResponsiveContainer height='100%' width='100%'>
       <BarChart
         width={700}
