@@ -171,7 +171,7 @@ export const Profile = () => {
           <Graph><WeightChart userActivity={userActivity} /></Graph>
           <Graph><Objectives userAverageSessions={userAverageSessions} /></Graph>
           <Graph><Radar userPerformance={userPerformance}/></Graph>
-          <Graph>{userData && <KPI userData={userData} />}</Graph>
+          <Graph><KPI userData={userData} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
           {userData && icons.map((icon, index) =>
@@ -182,3 +182,5 @@ export const Profile = () => {
     </ProfileWrapper>
   )
 }
+
+// [Object.keys(userData.keyData)[index], Object.values(userData.keyData)[index]]

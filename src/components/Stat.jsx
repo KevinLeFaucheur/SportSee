@@ -58,9 +58,15 @@ const StatLabel = styled.p`
 export const Stat = ({ icon, userKeyData }) => {
     const { src, alt } = icon;
     const [label, amount] = userKeyData;
+    // const [label, setLabel] = useState();
+    // const [amount, setAmount] = useState();
     const [isLoading, setIsLoading] = useState(true);
   
     useEffect(() => {  
+        // if(userKeyData) {
+        //     setLabel(userKeyData.label)
+        //     setAmount(userKeyData.amount)
+        // }
       setIsLoading(userKeyData === undefined);
     }, [userKeyData]);
 
