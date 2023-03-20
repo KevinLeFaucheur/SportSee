@@ -6,11 +6,16 @@ import { Chart as Radar } from "../components/RadarChart"
 import { Chart as KPI } from "../components/PieChart"
 import { useEffect, useState } from "react";
 import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import iconCalorie from "../assets/icon_calorie.svg"
 import iconProtein from "../assets/icon_protein.svg"
 import iconGlucide from "../assets/icon_glucide.svg"
 import iconLipid from "../assets/icon_lipid.svg"
+
+const users = [
+  { id: 12 },
+  { id: 18 },
+]
 
 const icons = [
     {src: iconCalorie, alt: 'Calories'}, 
@@ -40,7 +45,6 @@ const Head = styled.div`
     margin: 0 0 41px;
     
   }
-  
   
   p {
     font-weight: 400;
@@ -114,9 +118,16 @@ export const Profile = () => {
   const [userActivity, setUserActivity] = useState();
   const [userAverageSessions, setUserAverageSessions] = useState();
   const [userPerformance, setUserPerformance] = useState();
+  const navigate = useNavigate();
   const { id } = useParams();
-
+  
+  
   useEffect(() => {  
+    
+    // if(users.find(user => user.id === id) === undefined) {
+    //   navigate('404');
+    // }
+
     const getUserData = async () => {
       const { data } = await getUser(id);
       setUserData(data);
@@ -147,7 +158,7 @@ export const Profile = () => {
   return (
     <ProfileWrapper>
       <Head>
-          {<h2>Bonjour <FirstName>{userData && userData.userInfos.firstName}</FirstName></h2>}
+          {<h2>Bonjour <FirstName>{userData?.userInfos.firstName}</FirstName></h2>}
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>

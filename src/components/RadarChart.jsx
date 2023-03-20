@@ -21,16 +21,23 @@ export const Chart = ({ userPerformance }) => {
     return (isLoading ? <Loading /> :
         <ResponsiveContainer height='100%' width='100%'>
             <RadarChart 
-                outerRadius={50} 
+                outerRadius={70} 
                 width={500} 
                 height={500} 
                 data={userPerformance.data} 
                 style={{ backgroundColor: '#282D30', borderRadius: '5px' }}
                 margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
-                    <PolarGrid strokeDasharray="3 1" radialLines={false}/>
-                    <PolarAngleAxis dataKey='kind' tickFormatter={tick => userPerformance.kind[tick]} />
+                    <PolarGrid radialLines={false} color='white' />
+                    <PolarAngleAxis 
+                        dataKey='kind' 
+                        tick={{ fill: 'white' }}
+                        tickFormatter={tick => userPerformance.kind[tick]} 
+                        fontSize={12} 
+                        fontWeight={500}
+                        fontFamily='Roboto'
+                    />
                     {/* <PolarRadiusAxis angle={90} /> */}
-                    <Radar dataKey="value" stroke="#E60000" fill="#E60000" fillOpacity={0.6} />
+                    <Radar dataKey="value" stroke="#E60000" fill="#E60000" fillOpacity={0.8} />
                     {/* <Legend /> */}
             </RadarChart>
         </ResponsiveContainer>
