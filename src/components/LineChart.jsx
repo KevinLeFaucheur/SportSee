@@ -13,6 +13,18 @@ import {
 import PropTypes from 'prop-types';
 import { Loading } from "./Loading";
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div style={{ backgroundColor: 'white', fontSize: '7px', padding: '10px' }}>
+        <p style={{ margin: '5 0' }}>{`${payload[0].value} min`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 export const Chart = ({ userAverageSessions }) => {
     const [isLoading, setIsLoading] = useState(true);
   
@@ -26,7 +38,7 @@ export const Chart = ({ userAverageSessions }) => {
                     margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
                 <XAxis dataKey="day" />
                 <YAxis hide={true} tick={7} />
-                <Tooltip />
+                <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
                 {/* <Legend /> */}
                 <Line type="monotone" dataKey="sessionLength" stroke="white" />
             </LineChart>

@@ -76,8 +76,8 @@ export const Stat = ({ icon, userKeyData }) => {
                 <img src={src} alt={alt} />
             </StatIcon>
             <StatText>
-                <StatAmount>{label && (label.charAt(0).toUpperCase() + label.slice(1)).replace(/Count/g, '')}</StatAmount>
-                <StatLabel>{amount && amount + 'g'}</StatLabel>
+                <StatAmount>{amount && amount + 'g'}</StatAmount>
+                <StatLabel>{label && (label.charAt(0).toUpperCase() + label.slice(1)).replace(/Count/g, '')}</StatLabel>
             </StatText>
         </StatWrapper>
     )
