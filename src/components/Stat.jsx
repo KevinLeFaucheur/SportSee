@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { getUser } from "../services";
 import { Loading } from "./Loading";
 
 const StatWrapper = styled.div`
@@ -39,7 +37,7 @@ const StatText = styled.div`
   }
 `
 
-const StatAmount = styled.p`
+const StatCount = styled.p`
     font-size: 20px;
     font-weight: 700;
     line-height: 24px;
@@ -57,16 +55,9 @@ const StatLabel = styled.p`
 
 export const Stat = ({ icon, userKeyData }) => {
     const { src, alt } = icon;
-    const [label, amount] = userKeyData;
-    // const [label, setLabel] = useState();
-    // const [amount, setAmount] = useState();
     const [isLoading, setIsLoading] = useState(true);
   
     useEffect(() => {  
-        // if(userKeyData) {
-        //     setLabel(userKeyData.label)
-        //     setAmount(userKeyData.amount)
-        // }
       setIsLoading(userKeyData === undefined);
     }, [userKeyData]);
 
@@ -76,8 +67,8 @@ export const Stat = ({ icon, userKeyData }) => {
                 <img src={src} alt={alt} />
             </StatIcon>
             <StatText>
-                <StatAmount>{amount && amount + 'g'}</StatAmount>
-                <StatLabel>{label && (label.charAt(0).toUpperCase() + label.slice(1)).replace(/Count/g, '')}</StatLabel>
+                <StatCount>{userKeyData.count}</StatCount>
+                <StatLabel>{userKeyData.label}</StatLabel>
             </StatText>
         </StatWrapper>
     )

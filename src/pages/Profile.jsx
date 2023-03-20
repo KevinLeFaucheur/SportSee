@@ -11,6 +11,7 @@ import iconCalorie from "../assets/icon_calorie.svg"
 import iconProtein from "../assets/icon_protein.svg"
 import iconGlucide from "../assets/icon_glucide.svg"
 import iconLipid from "../assets/icon_lipid.svg"
+import { getStatModel } from "../models/Models";
 
 const users = [
   { id: 12 },
@@ -115,6 +116,7 @@ const Graph = styled.div`
 
 export const Profile = () => {
   const [userData, setUserData] = useState();
+  const [userKeyData, setUserKeyData] = useState();
   const [userActivity, setUserActivity] = useState();
   const [userAverageSessions, setUserAverageSessions] = useState();
   const [userPerformance, setUserPerformance] = useState();
@@ -131,6 +133,7 @@ export const Profile = () => {
     const getUserData = async () => {
       const { data } = await getUser(id);
       setUserData(data);
+      setUserKeyData(getStatModel(data.keyData));
     }  
 
     const getUserActivityData = async () => {
@@ -169,8 +172,8 @@ export const Profile = () => {
           <Graph><KPI userData={userData} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {userData && icons.map((icon, index) =>
-              <Stat key={`dashboard-${index}`} icon={icon} userKeyData={[Object.keys(userData.keyData)[index], Object.values(userData.keyData)[index]]} />
+          {userKeyData && icons.map((icon, index) =>
+              <Stat key={`dashboard-${index}`} icon={icon} userKeyData={userKeyData[index]} />
           )}
         </StatsWrapper>
       </Body>
