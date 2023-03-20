@@ -13,6 +13,7 @@ import { Loading } from "./Loading";
 
 export const Chart = ({ userPerformance }) => {
      const [isLoading, setIsLoading] = useState(true);
+     console.log(userPerformance);
    
      useEffect(() => {  
        setIsLoading(userPerformance === undefined);
@@ -24,14 +25,14 @@ export const Chart = ({ userPerformance }) => {
                 outerRadius={70} 
                 width={500} 
                 height={500} 
-                data={userPerformance.data} 
+                data={userPerformance} 
                 style={{ backgroundColor: '#282D30', borderRadius: '5px' }}
                 margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
                     <PolarGrid radialLines={false} color='white' />
                     <PolarAngleAxis 
                         dataKey='kind' 
                         tick={{ fill: 'white' }}
-                        tickFormatter={tick => userPerformance.kind[tick]} 
+                        /*tickFormatter={tick => userPerformance.kind[tick]}*/
                         fontSize={12} 
                         fontWeight={500}
                         fontFamily='Roboto'
@@ -45,14 +46,10 @@ export const Chart = ({ userPerformance }) => {
 };
 
 Chart.propTypes = {
-    userPerformance: PropTypes.shape({
-        data: PropTypes.arrayOf(
-            PropTypes.shape({
-                value: PropTypes.number,
-                kind: PropTypes.number,
-            })
-        ),
-        kind: PropTypes.objectOf(PropTypes.string),
-        userId: PropTypes.number
-    })
+    userPerformance: PropTypes.arrayOf(
+        PropTypes.shape({
+            kind: PropTypes.string,
+            value: PropTypes.number,
+        })
+    )
 };
