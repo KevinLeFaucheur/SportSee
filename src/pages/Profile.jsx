@@ -137,22 +137,6 @@ export const Profile = () => {
       setUserPerformance(data);
     }  
 
-    // const getAllUserData = async () => {
-      
-      
-    //   const { userData } = await getUser(id);
-    //   const { activityData } = await getUserActivity(id);
-    //   const { sessionsData } = await getUserAverageSessions(id);
-    //   const { perfData } = await getUserPerformance(id);
-      
-    //   setUserData(userData);
-    //   setUserActivity(activityData);
-    //   setUserAverageSessions(sessionsData);
-    //   setUserPerformance(perfData);
-    // }  
-    
-    // getAllUserData();
-    // setLoading(false);
     getUserPerformanceData();
     getUserAverageSessionsData();
     getUserActivityData();
