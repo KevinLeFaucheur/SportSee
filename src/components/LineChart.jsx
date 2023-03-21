@@ -34,9 +34,9 @@ export const Chart = ({ userAverageSessions }) => {
 
     return (isLoading ? <Loading /> :
         <ResponsiveContainer height='100%' width='100%'>
-            <LineChart width={730} height={250} data={userAverageSessions.sessions}  style={{ backgroundColor: '#E60000', borderRadius: '5px' }}
+            <LineChart width={730} height={250} data={userAverageSessions.sessions} style={{ backgroundColor: '#E60000', borderRadius: '5px' }}
                     margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
-                <XAxis dataKey="day" />
+                <XAxis dataKey="day" strokeOpacity={0} tick={{ fill: 'white' }} />
                 <YAxis hide={true} tick={7} />
                 <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
                 {/* <Legend /> */}

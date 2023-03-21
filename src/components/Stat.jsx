@@ -51,6 +51,7 @@ const StatLabel = styled.p`
     line-height: 24px;
     letter-spacing: 0px;
     text-align: left;
+    color: #74798C;
 `
 
 export const Stat = ({ icon, userKeyData }) => {
