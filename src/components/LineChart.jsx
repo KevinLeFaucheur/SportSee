@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { 
     Line, 
     LineChart, 
@@ -26,33 +25,31 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export const Chart = ({ userAverageSessions }) => {
-    const [isLoading, setIsLoading] = useState(true);
-  
-    useEffect(() => {  
-      setIsLoading(userAverageSessions === undefined);  
-    }, [userAverageSessions]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    return (isLoading ? <Loading /> :
-        <ResponsiveContainer height='100%' width='100%'>
-            <LineChart width={730} height={250} data={userAverageSessions.sessions} style={{ backgroundColor: '#E60000', borderRadius: '5px' }}
-                    margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
-                <XAxis dataKey="day" strokeOpacity={0} tick={{ fill: 'white' }} />
-                <YAxis hide={true} tick={7} />
-                <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
-                {/* <Legend /> */}
-                <Line type="monotone" dataKey="sessionLength" stroke="white" />
-            </LineChart>
-        </ResponsiveContainer>
-    )
+  useEffect(() => {  
+    setIsLoading(userAverageSessions === undefined);  
+  }, [userAverageSessions]);
+
+  return (isLoading ? <Loading /> :
+    <ResponsiveContainer height='100%' width='100%'>
+      <LineChart width={730} height={250} data={userAverageSessions} style={{ backgroundColor: '#E60000', borderRadius: '5px' }}
+          margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
+        <XAxis dataKey="day" strokeOpacity={0} tick={{ fill: 'white', opacity: 0.5, fontSize: '12px' }} />
+        <YAxis hide={true} tick={7} />
+        <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
+        {/* <Legend /> */}
+        <Line type="monotone" dataKey="sessionLength" stroke="white" />
+      </LineChart>
+    </ResponsiveContainer>
+  )
 };
 
 Chart.propTypes = {
-    userAverageSessions: PropTypes.shape({
-        sessions: PropTypes.arrayOf(
-          PropTypes.shape({
-            day: PropTypes.number,
-            sessionLength: PropTypes.number,
-        })),
-        userId: PropTypes.number
+  userAverageSessions: PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.string,
+      sessionLength: PropTypes.number
     })
+  )
 };

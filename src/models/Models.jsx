@@ -1,29 +1,29 @@
 export const getStatModel = (data) => {
-  let modelData = [];
+  let dataModel = [];
 
   for(const property in data) {
 
     switch(property) {
       case 'calorieCount':
-        modelData.push({ 
+        dataModel.push({ 
           label: 'Calories', 
           count: `${data[property].toLocaleString('en-US')}kCal` 
         });
         break;
       case 'proteinCount':
-        modelData.push({ 
+        dataModel.push({ 
           label: 'Proteines', 
           count: `${data[property].toLocaleString('en-US')}g` 
         });
         break;
       case 'carbohydrateCount':
-        modelData.push({ 
+        dataModel.push({ 
           label: 'Glucides', 
           count: `${data[property].toLocaleString('en-US')}g` 
         });
         break;
       case 'lipidCount':
-        modelData.push({ 
+        dataModel.push({ 
           label: 'Lipides', 
           count: `${data[property].toLocaleString('en-US')}g` 
         });
@@ -32,49 +32,49 @@ export const getStatModel = (data) => {
     }
   }
 
-  console.log(modelData);
+  console.log(dataModel);
 
-  return modelData;
+  return dataModel;
 }
 
 export const getPerformanceModel = (perfData) => {
   const { data, kind } = perfData;
-  let modelData = [];
+  let dataModel = [];
 
   for(const property in data) {
     switch(kind[parseInt(property)+1]) {
       case 'cardio':
-        modelData.push({
+        dataModel.push({
           kind: 'Cardio',
           value: data[property].value
         })
         break;
       case 'energy':
-        modelData.push({
+        dataModel.push({
           kind: 'Energie',
           value: data[property].value
         })
         break;
       case 'endurance':
-        modelData.push({
+        dataModel.push({
           kind: 'Endurance',
           value: data[property].value
         })
         break;
       case 'strength':
-        modelData.push({
+        dataModel.push({
           kind: 'Force',
           value: data[property].value
         })
         break;
       case 'speed':
-        modelData.push({
+        dataModel.push({
           kind: 'Vitesse',
           value: data[property].value
         })
         break;
       case 'intensity':
-        modelData.push({
+        dataModel.push({
           kind: 'Intensité',
           value: data[property].value
         })
@@ -83,6 +83,21 @@ export const getPerformanceModel = (perfData) => {
     }
   }
               
-  console.log(modelData);
-  return modelData;
+  console.log(dataModel);
+  return dataModel;
+}
+
+export const getAverageSessionsModel = (data) => {
+  const { sessions } = data;
+  const dataModel = [];
+  const labels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+
+  for(const property in sessions) {
+    dataModel.push({
+      day: labels[property],
+      sessionLength: sessions[property].sessionLength
+    })
+  }
+
+  return dataModel;
 }

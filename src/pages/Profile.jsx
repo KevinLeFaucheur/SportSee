@@ -11,7 +11,7 @@ import iconCalorie from "../assets/icon_calorie.svg"
 import iconProtein from "../assets/icon_protein.svg"
 import iconGlucide from "../assets/icon_glucide.svg"
 import iconLipid from "../assets/icon_lipid.svg"
-import { getPerformanceModel, getStatModel } from "../models/Models";
+import { getPerformanceModel, getStatModel, getAverageSessionsModel } from "../models/Models";
 
 const users = [
   { id: 12 },
@@ -143,7 +143,7 @@ export const Profile = () => {
 
     const getUserAverageSessionsData = async () => {
       const { data } = await getUserAverageSessions(id);
-      setUserAverageSessions(data);
+      setUserAverageSessions(getAverageSessionsModel(data));
     }  
 
     const getUserPerformanceData = async () => {
