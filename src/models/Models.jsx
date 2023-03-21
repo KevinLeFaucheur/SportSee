@@ -31,9 +31,6 @@ export const getStatModel = (data) => {
       default:
     }
   }
-
-  console.log(dataModel);
-
   return dataModel;
 }
 
@@ -82,8 +79,6 @@ export const getPerformanceModel = (perfData) => {
       default: break;
     }
   }
-              
-  console.log(dataModel);
   return dataModel;
 }
 
@@ -98,6 +93,5 @@ export const getAverageSessionsModel = (data) => {
       sessionLength: sessions[property].sessionLength
     })
   }
-
   return dataModel;
 }

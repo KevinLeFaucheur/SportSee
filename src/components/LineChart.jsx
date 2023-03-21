@@ -40,6 +40,16 @@ export const Chart = ({ userAverageSessions }) => {
         <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
         {/* <Legend /> */}
         <Line type="monotone" dataKey="sessionLength" stroke="white" />
+        <text
+          x='12%'
+          y='12%'
+          dy={+12}
+          style={{ fontSize: '15px', fontWeight: 500, fill: '#FFFFFF', fillOpacity: 0.5 }}
+          width={50}
+          textAnchor='start'
+          verticalanchor='start'
+        >Durée moyenne des sessions
+        </text>
       </LineChart>
     </ResponsiveContainer>
   )

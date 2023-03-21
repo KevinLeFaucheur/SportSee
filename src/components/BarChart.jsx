@@ -57,9 +57,9 @@ export const Chart = ({ userActivity }) => {
           dy={+12}
           style={{ fontSize: 15, fontWeight: 500, fill: '#20253A' }}
           width={200}
-          scaleToFit={true}
+          // scaletofit={true}
           textAnchor='start'
-          verticalAnchor='start'
+          verticalanchor='start'
         >Activité quotidienne
         </text>
       </BarChart>
