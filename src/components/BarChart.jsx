@@ -3,8 +3,10 @@ import {
     Bar, 
     BarChart, 
     CartesianGrid, 
+    Customized, 
     Legend, 
     ResponsiveContainer, 
+    Text, 
     Tooltip, 
     XAxis, 
     YAxis 
@@ -33,7 +35,7 @@ export const Chart = ({ userActivity }) => {
   }, [userActivity]);
 
   return (isLoading ? <Loading /> :
-    <ResponsiveContainer height='100%' width='100%'>
+  <ResponsiveContainer height='100%' width='100%'>
       <BarChart
         width={700}
         height={300}
@@ -44,13 +46,22 @@ export const Chart = ({ userActivity }) => {
           left: 50,
           bottom: 0,
         }}>
-        <CartesianGrid strokeDasharray="1 3" />
+        <CartesianGrid strokeDasharray="1 3" vertical={false} />
         <XAxis dataKey='day' tickFormatter={(_, index) => index + 1} />
-        <YAxis tickCount={3} orientation='right' axisLine={false} />
+        <YAxis tickCount={3} orientation='right' axisLine={false} strokeOpacity={0}/>
         <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
         <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={100} />
         <Bar dataKey='kilogram' name="Poids (kg)" barSize={7} fill="#282D30" />
         <Bar dataKey='calories' name="Calories brûlées (kCal)" barSize={7} fill="#E60000" />
+        <text
+          dy={+12}
+          style={{ fontSize: 15, fontWeight: 500, fill: '#20253A' }}
+          width={200}
+          scaleToFit={true}
+          textAnchor='start'
+          verticalAnchor='start'
+        >Activité quotidienne
+        </text>
       </BarChart>
     </ResponsiveContainer>
   )
