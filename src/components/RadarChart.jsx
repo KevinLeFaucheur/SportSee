@@ -13,7 +13,6 @@ import { Loading } from "./Loading";
 
 export const Chart = ({ userPerformance }) => {
      const [isLoading, setIsLoading] = useState(true);
-     console.log(userPerformance);
    
      useEffect(() => {  
        setIsLoading(userPerformance === undefined);
