@@ -37,6 +37,7 @@ export const getStatModel = (data) => {
 export const getPerformanceModel = (perfData) => {
   const { data, kind } = perfData;
   let dataModel = [];
+  console.log(perfData);
 
   for(const property in data) {
     switch(kind[parseInt(property)+1]) {

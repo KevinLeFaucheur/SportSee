@@ -9,11 +9,6 @@ export const getUser = async (userId) => {
     } catch (error) { console.log(error); }
 };
 
-export const getUserAge = (userId) => {
-    const user = getUser(userId);
-    return user.userInfos.age;
-};
-
 export const getUserActivity = async (userId) => {
     try {
         const { data } = await axios.get(`${API_URL}user/${userId}/activity`);

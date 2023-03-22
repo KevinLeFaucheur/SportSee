@@ -129,32 +129,26 @@ export const Profile = () => {
     // if(users.find(user => user.id === id) === undefined) {
     //   navigate('404');
     // }
+    
+    Promise
+      .all([getUser(id), getUserActivity(id), getUserAverageSessions(id), getUserPerformance(id)])
+      .then(results => {
+        // const { data: userData } = results[0];
+        // const { data: userActivity } = results[1];
+        // const { data: userAverageSessions } = results[2];
+        // const { data: userPerformance } = results[3];
+    
+        // console.log(userData);
+        // console.log(userActivity);
+        // console.log(userAverageSessions);
+        // console.log(userPerformance);
 
-    const getUserData = async () => {
-      const { data } = await getUser(id);
-      setUserData(data);
-      setUserKeyData(getStatModel(data.keyData));
-    }  
-
-    const getUserActivityData = async () => {
-      const { data } = await getUserActivity(id);
-      setUserActivity(data);
-    }  
-
-    const getUserAverageSessionsData = async () => {
-      const { data } = await getUserAverageSessions(id);
-      setUserAverageSessions(getAverageSessionsModel(data));
-    }  
-
-    const getUserPerformanceData = async () => {
-      const { data } = await getUserPerformance(id);
-      setUserPerformance(getPerformanceModel(data));
-    }  
-
-    getUserPerformanceData();
-    getUserAverageSessionsData();
-    getUserActivityData();
-    getUserData();
+        setUserData(results[0].data);
+        setUserKeyData(getStatModel(results[0].data.keyData));
+        setUserActivity(results[1].data);
+        setUserAverageSessions(getAverageSessionsModel(results[2].data));
+        setUserPerformance(getPerformanceModel(results[3].data));
+      });
 
   }, [id]);
 
@@ -180,5 +174,3 @@ export const Profile = () => {
     </ProfileWrapper>
   )
 }
-
-// [Object.keys(userData.keyData)[index], Object.values(userData.keyData)[index]]
