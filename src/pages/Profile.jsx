@@ -14,8 +14,8 @@ import iconLipid from "../assets/icon_lipid.svg"
 import { getPerformanceModel, getStatModel, getAverageSessionsModel } from "../models/Models";
 
 const users = [
-  { id: 12 },
-  { id: 18 },
+  { id: '12' },
+  { id: '18' },
 ]
 
 const icons = [
@@ -126,9 +126,9 @@ export const Profile = () => {
   
   useEffect(() => {  
     
-    // if(users.find(user => user.id === id) === undefined) {
-    //   navigate('404');
-    // }
+    if(users.find(user => user.id === id) === undefined) {
+      navigate('404');
+    }
     
     Promise
       .all([getUser(id), getUserActivity(id), getUserAverageSessions(id), getUserPerformance(id)])
