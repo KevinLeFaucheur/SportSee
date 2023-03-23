@@ -6,7 +6,7 @@ import { Chart as Radar } from "../components/RadarChart"
 import { Chart as KPI } from "../components/PieChart"
 import { useEffect, useState } from "react";
 import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import iconCalorie from "../assets/icon_calorie.svg"
 import iconProtein from "../assets/icon_protein.svg"
 import iconGlucide from "../assets/icon_glucide.svg"
@@ -120,28 +120,29 @@ export const Profile = () => {
   const [userActivity, setUserActivity] = useState();
   const [userAverageSessions, setUserAverageSessions] = useState();
   const [userPerformance, setUserPerformance] = useState();
-  const navigate = useNavigate();
+  const [userNotFound, setUserNotFound] = useState(false);
   const { id } = useParams();
-  
+  // const navigate = useNavigate();
   
   useEffect(() => {  
     
-    if(users.find(user => user.id === id) === undefined) {
-      navigate('404');
+    if(!users.find(user => user.id === id)) {
+      setUserNotFound(true);
+      return;
     }
-    
+      
     Promise
-      .all([getUser(id), getUserActivity(id), getUserAverageSessions(id), getUserPerformance(id)])
+      .all([
+        getUser(id), 
+        getUserActivity(id), 
+        getUserAverageSessions(id), 
+        getUserPerformance(id)
+      ])
       .then(results => {
         // const { data: userData } = results[0];
         // const { data: userActivity } = results[1];
         // const { data: userAverageSessions } = results[2];
         // const { data: userPerformance } = results[3];
-    
-        // console.log(userData);
-        // console.log(userActivity);
-        // console.log(userAverageSessions);
-        // console.log(userPerformance);
 
         setUserData(results[0].data);
         setUserKeyData(getStatModel(results[0].data.keyData));
@@ -152,7 +153,7 @@ export const Profile = () => {
 
   }, [id]);
 
-  return (
+  return (userNotFound ? <Navigate to='404'/> :
     <ProfileWrapper>
       <Head>
           {<h2>Bonjour <FirstName>{userData?.userInfos.firstName}</FirstName></h2>}

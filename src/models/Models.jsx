@@ -1,3 +1,8 @@
+/**
+ * Data model for the energy statistics
+ * @param {{ calorieCount: number, carbohydrateCount: number, lipidCount: number, proteinCount: number }} data
+ * @returns {{ label: string, count: string }}
+ */
 export const getStatModel = (data) => {
   let dataModel = [];
 
@@ -34,10 +39,15 @@ export const getStatModel = (data) => {
   return dataModel;
 }
 
+/**
+ * Data model for the performance statistics
+ * @param {{ data: { value: number, kind: number }, kind: { string } }} perfData 
+ * @returns {{ kind: string, value: number }}
+ */
 export const getPerformanceModel = (perfData) => {
   const { data, kind } = perfData;
   let dataModel = [];
-  console.log(perfData);
+  // console.log(perfData);
 
   for(const property in data) {
     switch(kind[parseInt(property)+1]) {
@@ -80,13 +90,20 @@ export const getPerformanceModel = (perfData) => {
       default: break;
     }
   }
+  // console.log(dataModel);
   return dataModel;
 }
 
+/**
+ * Data model for the average sessions statistics
+ * @param {{  sessions: [{ day: number, sessionLength: number }] }} data 
+ * @returns { { day: string, sessionLength: number }[] } day of the week, sessionLength in minutes
+ */
 export const getAverageSessionsModel = (data) => {
   const { sessions } = data;
   const dataModel = [];
   const labels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+  console.log(data);
 
   for(const property in sessions) {
     dataModel.push({
@@ -94,5 +111,6 @@ export const getAverageSessionsModel = (data) => {
       sessionLength: sessions[property].sessionLength
     })
   }
+  console.log(dataModel);
   return dataModel;
 }
