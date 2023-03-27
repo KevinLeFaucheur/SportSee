@@ -5,7 +5,12 @@ const API_URL = 'http://localhost:3000/';
 /**
  * Retrieves general data by user id
  * @param {string} userId 
- * @returns {{  }} user data
+ * @returns { data: { 
+ *              id: number, 
+ *              keyData: { calorieCount: number, carbohydrateCount: number, lipidCount: number, proteinCount: number }, 
+ *              todayScore: number, 
+ *              userInfos: { firstName: string, lastName: string, age: number } 
+ * }} user data
  */
 export const getUser = async (userId) => {
     try {
@@ -17,7 +22,10 @@ export const getUser = async (userId) => {
 /**
  * Retrieves activity data by user id
  * @param {string} userId 
- * @returns 
+ * @returns { data: { 
+ *              sessions: [{ day: Date, kilogram: number, calories: number }], 
+ *              userId: number
+ * }} activity data
  */
 export const getUserActivity = async (userId) => {
     try {
@@ -29,7 +37,10 @@ export const getUserActivity = async (userId) => {
 /**
  * Retrieves average session lengths data by user id
  * @param {string} userId 
- * @returns 
+ * @returns { data: { 
+ *             sessions: [{ day: number, sessionLength: number }], 
+ *             userId: number
+ * }} average sessions length data
  */
 export const getUserAverageSessions = async (userId) => {
     try {
@@ -41,7 +52,11 @@ export const getUserAverageSessions = async (userId) => {
 /**
  * Retrieves performance data by user id
  * @param {string} userId 
- * @returns 
+ * @returns { data: { 
+ *             data: [{ value: number, kind: number }], 
+ *             kind: [{ index: string }], 
+ *             userId: number
+ * }} performance by day data
  */
 export const getUserPerformance = async (userId) => {
     try {

@@ -53,7 +53,7 @@ const Head = styled.div`
     line-height: 24px;
     margin: 0 0 77px;
   }
-  `
+`
 
 const FirstName = styled.span`
   color: rgb(230, 0, 0);
@@ -122,7 +122,6 @@ export const Profile = () => {
   const [userPerformance, setUserPerformance] = useState();
   const [userNotFound, setUserNotFound] = useState(false);
   const { id } = useParams();
-  // const navigate = useNavigate();
   
   useEffect(() => {  
     
@@ -139,18 +138,12 @@ export const Profile = () => {
         getUserPerformance(id)
       ])
       .then(results => {
-        // const { data: userData } = results[0];
-        // const { data: userActivity } = results[1];
-        // const { data: userAverageSessions } = results[2];
-        // const { data: userPerformance } = results[3];
-
         setUserData(results[0].data);
         setUserKeyData(getStatModel(results[0].data.keyData));
         setUserActivity(results[1].data);
         setUserAverageSessions(getAverageSessionsModel(results[2].data));
         setUserPerformance(getPerformanceModel(results[3].data));
       });
-
   }, [id]);
 
   return (userNotFound ? <Navigate to='404'/> :
