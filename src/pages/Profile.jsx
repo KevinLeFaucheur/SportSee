@@ -1,19 +1,29 @@
 import styled from "styled-components";
-import { dashboard } from "../styles/vitamins";
 import { Stat } from "../components/Stat";
 import { Chart as WeightChart } from "../components/BarChart"
 import { Chart as Objectives } from "../components/LineChart"
 import { Chart as Radar } from "../components/RadarChart"
 import { Chart as KPI } from "../components/PieChart"
 import { useEffect, useState } from "react";
-import { 
-  getUser, 
-  getUserAge, 
-  getUserActivity, 
-  getUserAverageSessions, 
-  getUserPerformance 
-} from "../services";
-import { useParams } from "react-router-dom";
+import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
+import { Navigate, useParams } from "react-router-dom";
+import iconCalorie from "../assets/icon_calorie.svg"
+import iconProtein from "../assets/icon_protein.svg"
+import iconGlucide from "../assets/icon_glucide.svg"
+import iconLipid from "../assets/icon_lipid.svg"
+import { getPerformanceModel, getStatModel, getAverageSessionsModel } from "../models/Models";
+
+const users = [
+  { id: '12' },
+  { id: '18' },
+]
+
+const icons = [
+    {src: iconCalorie, alt: 'Calories'}, 
+    {src: iconProtein, alt: 'Proteins'}, 
+    {src: iconGlucide, alt: 'CarboHydrates'}, 
+    {src: iconLipid, alt: 'Lipids'}
+];
 
 const ProfileWrapper = styled.div`
   height: 779px;
@@ -34,14 +44,19 @@ const Head = styled.div`
     font-size: 48px;
     line-height: 24px;
     margin: 0 0 41px;
+    
   }
-
+  
   p {
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
     margin: 0 0 77px;
   }
+`
+
+const FirstName = styled.span`
+  color: rgb(230, 0, 0);
 `
 
 const Body = styled.div`
@@ -100,62 +115,54 @@ const Graph = styled.div`
 `
 
 export const Profile = () => {
-  const [user, setUser] = useState(null);
-  const [userActivity, setUserActivity] = useState([]);
-  const [userAverageSessions, setUserAverageSessions] = useState([]);
-  const [userPerformance, setUserPerformance] = useState([]);
+  const [userData, setUserData] = useState();
+  const [userKeyData, setUserKeyData] = useState();
+  const [userActivity, setUserActivity] = useState();
+  const [userAverageSessions, setUserAverageSessions] = useState();
+  const [userPerformance, setUserPerformance] = useState();
+  const [userNotFound, setUserNotFound] = useState(false);
   const { id } = useParams();
-
+  
   useEffect(() => {  
-    // keyData: todayScore: userInfos:
-    const getUserData = async () => {
-      const user = await getUser(id);
-      setUser(user);
-    }  
     
-    // sessions [7] day: date, kilogram: calories:
-    const getUserActivityData = async () => {
-      const userActivityData = await getUserActivity(id);
-      setUserActivity(userActivityData);
-    }  
-
-    // sessions [7] day: sessionLength:
-    const getUserAverageSessionsData = async () => {
-      const userAverageSessionsData = await getUserAverageSessions(id);
-      setUserAverageSessions(userAverageSessionsData);
-    }  
-
-    // data [6] kind [6]
-    const getUserPerformanceData = async () => {
-      const userPerformanceData = await getUserPerformance(id);
-      setUserPerformance(userPerformanceData);
-    }  
-
-    getUserData();
-    getUserActivityData();
-    getUserAverageSessionsData();
-    getUserPerformanceData();
+    if(!users.find(user => user.id === id)) {
+      setUserNotFound(true);
+      return;
+    }
+      
+    Promise
+      .all([
+        getUser(id), 
+        getUserActivity(id), 
+        getUserAverageSessions(id), 
+        getUserPerformance(id)
+      ])
+      .then(results => {
+        setUserData(results[0].data);
+        setUserKeyData(getStatModel(results[0].data.keyData));
+        setUserActivity(results[1].data);
+        setUserAverageSessions(getAverageSessionsModel(results[2].data));
+        setUserPerformance(getPerformanceModel(results[3].data));
+      });
   }, [id]);
 
-  return (user &&
+  return (userNotFound ? <Navigate to='404'/> :
     <ProfileWrapper>
-      {console.log(user.data.userInfos)}
-      {console.log(userActivity)}
-      {console.log(userAverageSessions)}
-      {console.log(userPerformance)}
       <Head>
-          {<h2>Bonjour {user.data.userInfos.firstName}</h2>}
+          {<h2>Bonjour <FirstName>{userData?.userInfos.firstName}</FirstName></h2>}
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>
         <GraphWrapper>
-          <Graph><WeightChart activityData={userActivity.data} /></Graph>
-          <Graph><Objectives averageSessionsData={userAverageSessions.data} /></Graph>
-          <Graph><Radar performanceData={userPerformance.data} /></Graph>
-          <Graph><KPI activityData={user.data} /></Graph>
+          <Graph><WeightChart userActivity={userActivity} /></Graph>
+          <Graph><Objectives userAverageSessions={userAverageSessions} /></Graph>
+          <Graph><Radar userPerformance={userPerformance}/></Graph>
+          <Graph><KPI userData={userData} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {dashboard.map((stat, index) => <Stat key={`dashboard-${index}`} stat={stat} />)}
+          {userKeyData && icons.map((icon, index) =>
+              <Stat key={`dashboard-${index}`} icon={icon} userKeyData={userKeyData[index]} />
+          )}
         </StatsWrapper>
       </Body>
     </ProfileWrapper>
