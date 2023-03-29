@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Loading } from "./Loading";
+import PropTypes from 'prop-types';
 
 const StatWrapper = styled.div`
   display: flex;
@@ -74,3 +75,10 @@ export const Stat = ({ icon, userKeyData }) => {
         </StatWrapper>
     )
 }
+
+Stat.propTypes = {
+    userKeyData: PropTypes.shape({
+        count: PropTypes.string,
+        label: PropTypes.string,
+    })
+};

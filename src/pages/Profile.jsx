@@ -13,6 +13,10 @@ import iconGlucide from "../assets/icon_glucide.svg"
 import iconLipid from "../assets/icon_lipid.svg"
 import { getPerformanceModel, getStatModel, getAverageSessionsModel } from "../models/Models";
 
+import * as mocks from '../mocks/api_mock' 
+
+const apiIsMocked = true;
+
 const users = [
   { id: '12' },
   { id: '18' },
@@ -129,7 +133,19 @@ export const Profile = () => {
       setUserNotFound(true);
       return;
     }
+
+    // When API is mocked
+    if(apiIsMocked) {
+      console.log(mocks);
+      setUserData(mocks.user);
+      setUserKeyData(mocks.stats);
+      setUserActivity(mocks.activity);
+      setUserAverageSessions(mocks.averageSessions);
+      setUserPerformance(mocks.performance);
+      return;
+    }
       
+    // Resolves and models all API data succesfully received
     Promise
       .all([
         getUser(id), 
