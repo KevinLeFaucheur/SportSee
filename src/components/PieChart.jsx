@@ -9,17 +9,11 @@ import { Loading } from "./Loading";
 
 export const Chart = ({ userData }) => {
     const [score, setScore] = useState(0);
-
-    const chartData = [
-        { name: 'score', value: score },
-        { name: 'max', value: 1 }
-     ];
-
-     const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
    
     useEffect(() => {  
         if(userData) {
-            setScore(userData.todayScore ? userData.todayScore : userData.score);
+            setScore(userData.score);
         }
         setIsLoading(userData === undefined);
     }, [userData]);
@@ -29,7 +23,7 @@ export const Chart = ({ userData }) => {
             <PieChart width={100} height={100} style={{ borderRadius: '5px' }}>
                 <Pie 
                 data={[userData]} 
-                dataKey={userData.todayScore ? 'todayScore' : 'score'} 
+                dataKey="score"
                 nameKey="name" 
                 cx="50%" 
                 cy="50%" 

@@ -1,4 +1,23 @@
 /**
+ * Data model for the user 
+ * @param {Object} data
+ * @param {number} data.score 
+ * @param {number} data.todayScore 
+ * @param {Object} data.userInfos
+ * @returns {{ firstName: string, score: number }}
+ */
+export const getUserModel = (data) => {
+  let modelData = {};
+
+  modelData = {
+    firstName: data.userInfos.firstName,
+    score: data.todayScore ? data.todayScore : data.score,
+  };
+  
+  return modelData;
+};
+
+/**
  * Data model for the energy statistics
  * @param {Object} data
  * @param {number} data.calorieCount

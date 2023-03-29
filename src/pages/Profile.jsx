@@ -11,16 +11,16 @@ import iconCalorie from "../assets/icon_calorie.svg"
 import iconProtein from "../assets/icon_protein.svg"
 import iconGlucide from "../assets/icon_glucide.svg"
 import iconLipid from "../assets/icon_lipid.svg"
-import { getPerformanceModel, getStatModel, getAverageSessionsModel } from "../models/Models";
+import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel } from "../models/Models";
 
 import * as mocks from '../mocks/api_mock' 
 
-const apiIsMocked = true;
+const apiIsMocked = false;
 
 const users = [
   { id: '12' },
   { id: '18' },
-]
+];
 
 const icons = [
     {src: iconCalorie, alt: 'Calories'}, 
@@ -154,7 +154,7 @@ export const Profile = () => {
         getUserPerformance(id)
       ])
       .then(results => {
-        setUserData(results[0].data);
+        setUserData(getUserModel(results[0].data));
         setUserKeyData(getStatModel(results[0].data.keyData));
         setUserActivity(results[1].data);
         setUserAverageSessions(getAverageSessionsModel(results[2].data));
@@ -165,7 +165,7 @@ export const Profile = () => {
   return (userNotFound ? <Navigate to='404'/> :
     <ProfileWrapper>
       <Head>
-          {<h2>Bonjour <FirstName>{userData?.userInfos.firstName}</FirstName></h2>}
+          {<h2>Bonjour <FirstName>{userData?.firstName}</FirstName></h2>}
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>
