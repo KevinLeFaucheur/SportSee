@@ -7,7 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import { Loading } from "./Loading";
 
-export const Chart = ({ userData }) => {
+export const Score = ({ userData }) => {
     const [score, setScore] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
    
@@ -47,7 +47,7 @@ export const Chart = ({ userData }) => {
 };
 
 
-Chart.propTypes = {
+Score.propTypes = {
     userData: PropTypes.shape({
         id: PropTypes.number,
         keyData: PropTypes.shape({

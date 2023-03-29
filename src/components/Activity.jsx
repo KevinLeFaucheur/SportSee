@@ -27,7 +27,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-export const Chart = ({ userActivity }) => {
+export const Activity = ({ userActivity }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {  
@@ -67,7 +67,7 @@ export const Chart = ({ userActivity }) => {
   )
 };
 
-Chart.propTypes = {
+Activity.propTypes = {
   userActivity: PropTypes.shape({
     sessions: PropTypes.arrayOf(
       PropTypes.shape({

@@ -24,7 +24,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-export const Chart = ({ userAverageSessions }) => {
+export const AverageSessions = ({ userAverageSessions }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {  
@@ -55,7 +55,7 @@ export const Chart = ({ userAverageSessions }) => {
   )
 };
 
-Chart.propTypes = {
+AverageSessions.propTypes = {
   userAverageSessions: PropTypes.arrayOf(
     PropTypes.shape({
       day: PropTypes.string,

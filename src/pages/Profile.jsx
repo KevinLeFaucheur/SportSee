@@ -1,18 +1,14 @@
 import styled from "styled-components";
-import { Stat } from "../components/Stat";
-import { Chart as WeightChart } from "../components/BarChart"
-import { Chart as Objectives } from "../components/LineChart"
-import { Chart as Radar } from "../components/RadarChart"
-import { Chart as KPI } from "../components/PieChart"
 import { useEffect, useState } from "react";
-import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
 import { Navigate, useParams } from "react-router-dom";
-import iconCalorie from "../assets/icon_calorie.svg"
-import iconProtein from "../assets/icon_protein.svg"
-import iconGlucide from "../assets/icon_glucide.svg"
-import iconLipid from "../assets/icon_lipid.svg"
+import { Stat } from "../components/Stat";
+import { Activity } from "../components/Activity"
+import { AverageSessions } from "../components/AverageSessions"
+import { Performance } from "../components/Performance"
+import { Score } from "../components/Score"
+import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
 import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel } from "../models/Models";
-
+import { statsIcons } from "../styles/icons";
 import * as mocks from '../mocks/api_mock' 
 
 const apiIsMocked = false;
@@ -20,13 +16,6 @@ const apiIsMocked = false;
 const users = [
   { id: '12' },
   { id: '18' },
-];
-
-const icons = [
-    {src: iconCalorie, alt: 'Calories'}, 
-    {src: iconProtein, alt: 'Proteins'}, 
-    {src: iconGlucide, alt: 'CarboHydrates'}, 
-    {src: iconLipid, alt: 'Lipids'}
 ];
 
 const ProfileWrapper = styled.div`
@@ -170,13 +159,13 @@ export const Profile = () => {
       </Head>
       <Body>
         <GraphWrapper>
-          <Graph><WeightChart userActivity={userActivity} /></Graph>
-          <Graph><Objectives userAverageSessions={userAverageSessions} /></Graph>
-          <Graph><Radar userPerformance={userPerformance}/></Graph>
-          <Graph><KPI userData={userData} /></Graph>
+          <Graph><Activity userActivity={userActivity} /></Graph>
+          <Graph><AverageSessions userAverageSessions={userAverageSessions} /></Graph>
+          <Graph><Performance userPerformance={userPerformance}/></Graph>
+          <Graph><Score userData={userData} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {userKeyData && icons.map((icon, index) =>
+          {userKeyData && statsIcons.map((icon, index) =>
               <Stat key={`dashboard-${index}`} icon={icon} userKeyData={userKeyData[index]} />
           )}
         </StatsWrapper>
