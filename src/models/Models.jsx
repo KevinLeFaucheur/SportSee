@@ -18,6 +18,25 @@ export const getUserModel = (data) => {
 };
 
 /**
+ * 
+ */
+export const getActivityModel = (data) => {
+  let modelData = {};
+
+  modelData = data.sessions.map((session, index) => {
+    return { 
+      day: `${index + 1}`,
+      kilogram: session.kilogram,
+      calories: session.calories,
+    }
+  })
+
+  console.log(modelData);
+  
+  return modelData;
+};
+
+/**
  * Data model for the energy statistics
  * @param {Object} data
  * @param {number} data.calorieCount

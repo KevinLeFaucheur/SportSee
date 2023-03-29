@@ -7,7 +7,7 @@ import { AverageSessions } from "../components/AverageSessions"
 import { Performance } from "../components/Performance"
 import { Score } from "../components/Score"
 import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
-import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel } from "../models/Models";
+import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel, getActivityModel } from "../models/Models";
 import { statsIcons } from "../styles/icons";
 import * as mocks from '../mocks/api_mock' 
 
@@ -145,7 +145,7 @@ export const Profile = () => {
       .then(results => {
         setUserData(getUserModel(results[0].data));
         setUserKeyData(getStatModel(results[0].data.keyData));
-        setUserActivity(results[1].data);
+        setUserActivity(getActivityModel(results[1].data));
         setUserAverageSessions(getAverageSessionsModel(results[2].data));
         setUserPerformance(getPerformanceModel(results[3].data));
       });

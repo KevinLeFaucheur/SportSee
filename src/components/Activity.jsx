@@ -39,7 +39,7 @@ export const Activity = ({ userActivity }) => {
       <BarChart
         width={700}
         height={300}
-        data={userActivity.sessions}
+        data={userActivity}
         margin={{
           top: 0,
           right: 0,
@@ -68,13 +68,11 @@ export const Activity = ({ userActivity }) => {
 };
 
 Activity.propTypes = {
-  userActivity: PropTypes.shape({
-    sessions: PropTypes.arrayOf(
-      PropTypes.shape({
-        day: PropTypes.string,
-        kilogram: PropTypes.number,
-        calories: PropTypes.number,
-    })),
-    userId: PropTypes.number
-  })
+  userActivity: PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.string,
+      kilogram: PropTypes.number,
+      calories: PropTypes.number,
+    })
+  )
 };
