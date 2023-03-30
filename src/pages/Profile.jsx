@@ -83,22 +83,23 @@ const GraphWrapper = styled.div`
   width: 75%;
 `
 
-const GraphMain = styled.div`
-  width: 100%;
-  height: 50%;
-`
+// const GraphMain = styled.div`
+//   width: 100%;
+//   height: 50%;
+// `
 
-const GraphSub = styled.div`
-  display: flex;
-  justify-content: space-between;
-  height: 48%;
-`
+// const GraphSub = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   height: 48%;
+// `
 
 const Graph = styled.div`
   &:first-child {
     width: 100%;
     height: 50%;
     align-self: flex-start;
+    padding: 24px;
   }
 
   height: 46%;

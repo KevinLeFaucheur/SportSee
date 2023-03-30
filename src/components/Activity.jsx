@@ -38,7 +38,7 @@ export const Activity = ({ userActivity }) => {
   <ResponsiveContainer height='100%' width='100%'>
       <BarChart
         width={700}
-        height={300}
+        height={400}
         data={userActivity}
         margin={{
           top: 0,
@@ -50,7 +50,7 @@ export const Activity = ({ userActivity }) => {
         <XAxis dataKey='day' tickFormatter={(_, index) => index + 1} />
         <YAxis tickCount={3} orientation='right' axisLine={false} strokeOpacity={0}/>
         <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
-        <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={100} />
+        <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={70} />
         <Bar dataKey='kilogram' name="Poids (kg)" barSize={7} fill="#282D30" />
         <Bar dataKey='calories' name="Calories brûlées (kCal)" barSize={7} fill="#E60000" />
         <text

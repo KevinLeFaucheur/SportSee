@@ -1,20 +1,18 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; 
-import { Header } from './layout/Header';
-import { Side } from './layout/Side';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
 import { Settings } from './pages/Settings';
 import { Community } from './pages/Community';
 import { Error } from './pages/Error';
 import { GlobalStyles } from './styles/GlobalStyles';
+import { Layout } from './layout/Layout';
 
 export const App = () => {
   return (
     <Router>
       <GlobalStyles />
-      <Header />
-      <Side />
+      <Layout />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/profile/:id' element={<Profile />} />
