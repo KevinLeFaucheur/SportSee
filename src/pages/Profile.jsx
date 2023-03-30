@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Stat } from "../components/Stat";
 import { Activity } from "../components/Activity"
 import { AverageSessions } from "../components/AverageSessions"
@@ -115,6 +115,8 @@ export const Profile = () => {
   const [userPerformance, setUserPerformance] = useState();
   const [userNotFound, setUserNotFound] = useState(false);
   const { id } = useParams();
+
+  const navigate = useNavigate();
   
   useEffect(() => {  
     
@@ -151,7 +153,8 @@ export const Profile = () => {
       });
   }, [id]);
 
-  return (userNotFound ? <Navigate to='404'/> :
+  // return (userNotFound ? navigate("../404", { state: { error: 'This user was not found.' }}) :
+  return (userNotFound ? <Navigate to='../404' state={{ error: 'This user was not found.' }}/> :
     <ProfileWrapper>
       <Head>
           {<h2>Bonjour <FirstName>{userData?.firstName}</FirstName></h2>}

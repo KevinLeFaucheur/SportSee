@@ -19,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
     ul, h2, p{
     }
 
-    a, a:link, a:visited, a:focus, a:hover{
+    a, a:link, a:visited, a:focus, a:hover {
         color: white;
         text-decoration: none;
     }
