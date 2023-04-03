@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { SideButton } from "../components/SideButton"
-import { sideBar } from "../styles/logos"
+import { sideBarIcons } from "../styles/icons"
 
 const SideWrapper = styled.div`
     display: flex;
@@ -27,14 +27,12 @@ const Copyright = styled.p`
 `
 
 export const Side = () => {
-    const logos = Object.values(sideBar);
-
     return (
         <SideWrapper>
-            {logos.map(
-                (logo, index) =>  
+            {sideBarIcons.map(
+                (icon, index) =>  
                     <Link key={`button-${index}`} to='/profile' >
-                        <SideButton logo={logo} />
+                        <SideButton icon={icon} />
                     </Link>
             )}
             <Copyright>Copiryght, SportSee 2020</Copyright>

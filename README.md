@@ -1,23 +1,58 @@
-# Getting Started with Create React App
+![JAVASCRIPT](./src/assets/badges/-javascript.svg)
+![REACT](./src/assets/badges/-react.svg)
+<br>
+![react](https://img.shields.io/badge/react-18.2.0-18a7d6?style=for-the-badge&logo=react)
+![react-router](https://img.shields.io/badge/react%20router-6.9.0-red?style=for-the-badge&logo=reactrouter)
+![axios](https://img.shields.io/badge/axios-1.3.4-blueviolet?style=for-the-badge&logo=axios)
+<br>
+![proptypes](https://img.shields.io/badge/prop--types-15.8.1-teal?style=for-the-badge&logo=react)
+![recharts](https://img.shields.io/badge/recharts-2.4.3-green?style=for-the-badge&logo=react)
+![styled-components](https://img.shields.io/badge/styled--components-5.3.8-teal?style=for-the-badge&logo=styled-components)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+
+### 1. General information 
+
+![SportSee](./src/assets/logo_sportsee.svg)
+
+Developer for SportSee, startup dedicated to sport coaching. 
+Wishing to launch a new version of their profile page. This page should let the use read average sessions statistics and burnt calories.
+
+### 2. Getting Started with this repositery
+
+## 2.1 Launching the micro API
+
+You need first the micro API from this repositery: <br>
+[https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard)
+- Fork the repository
+- Clone it on your computer.
+- The ` yarn ` command will allow you to install the dependencies.
+- The ` yarn dev ` command will allow you to run the micro API.
+
+## 2.2 Launching the front-end project
 
 ## Available Scripts
 
 In the project directory, you can run:
 
+### ` npm install `
+
+Installs all dependencies needed for the front-end to run.
+
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3020](http://localhost:3020) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+### Changing the front-end port
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In ` package.json ` , in the ` "scripts" ` field, change port number in this line:<br>
+` "start": "set PORT=3020 && react-scripts start", ` 
+
+## 3. Other commands
 
 ### `npm run build`
 
@@ -29,41 +64,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### `npm run build` fails to minify
 

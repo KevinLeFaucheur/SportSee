@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Loading } from "./Loading";
+import PropTypes from 'prop-types';
 
 const StatWrapper = styled.div`
   display: flex;
@@ -35,7 +38,7 @@ const StatText = styled.div`
   }
 `
 
-const StatAmount = styled.p`
+const StatCount = styled.p`
     font-size: 20px;
     font-weight: 700;
     line-height: 24px;
@@ -49,18 +52,33 @@ const StatLabel = styled.p`
     line-height: 24px;
     letter-spacing: 0px;
     text-align: left;
+    color: #74798C;
 `
 
-export const Stat = ({ stat }) => {
-    const { logo, amount, label } = stat;
+export const Stat = ({ icon, userKeyData }) => {
+    const { src, alt } = icon;
+    const [isLoading, setIsLoading] = useState(true);
+  
+    useEffect(() => {  
+      setIsLoading(userKeyData === undefined);
+    }, [userKeyData]);
 
-    return (
+    return (isLoading ? <Loading /> :
         <StatWrapper>
-            <StatIcon dangerouslySetInnerHTML={{__html: logo}}/>
+            <StatIcon>
+                <img src={src} alt={alt} />
+            </StatIcon>
             <StatText>
-                <StatAmount>{amount}</StatAmount>
-                <StatLabel>{label}</StatLabel>
+                <StatCount>{userKeyData.count}</StatCount>
+                <StatLabel>{userKeyData.label}</StatLabel>
             </StatText>
         </StatWrapper>
     )
 }
+
+Stat.propTypes = {
+    userKeyData: PropTypes.shape({
+        count: PropTypes.string,
+        label: PropTypes.string,
+    })
+};
