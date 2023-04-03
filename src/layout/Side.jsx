@@ -1,17 +1,7 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { SideButton } from "../components/SideButton"
-import iconZen from "../assets/icon_zen.svg"
-import iconSwim from "../assets/icon_swim.svg"
-import iconBicycle from "../assets/icon_bicycle.svg"
-import iconLift from "../assets/icon_lift.svg"
-
-const icons = [
-    {src: iconZen, alt: 'Zen'}, 
-    {src: iconSwim, alt: 'Swimming'}, 
-    {src: iconBicycle, alt: 'Bicycle'}, 
-    {src: iconLift, alt: 'Lifting'}
-];
+import { sideBarIcons } from "../styles/icons"
 
 const SideWrapper = styled.div`
     display: flex;
@@ -39,7 +29,7 @@ const Copyright = styled.p`
 export const Side = () => {
     return (
         <SideWrapper>
-            {icons.map(
+            {sideBarIcons.map(
                 (icon, index) =>  
                     <Link key={`button-${index}`} to='/profile' >
                         <SideButton icon={icon} />

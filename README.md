@@ -15,7 +15,8 @@
 
 ![SportSee](./src/assets/logo_sportsee.svg)
 
-Vous travaillez en tant que développeur chez SportSee, une startup dédiée au coaching sportif. En pleine croissance, l’entreprise va aujourd’hui lancer une nouvelle version de la page profil de l’utilisateur. Cette page va notamment permettre à l’utilisateur de suivre le nombre de sessions réalisées ainsi que le nombre de calories brûlées.
+Developer for SportSee, startup dedicated to sport coaching. 
+Wishing to launch a new version of their profile page. This page should let the use read average sessions statistics and burnt calories.
 
 ### 2. Getting Started with this repositery
 

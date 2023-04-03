@@ -11,7 +11,7 @@ import {
 } from "recharts"; 
 import { Loading } from "./Loading";
 
-export const Chart = ({ userPerformance }) => {
+export const Performance = ({ userPerformance }) => {
      const [isLoading, setIsLoading] = useState(true);
    
      useEffect(() => {  
@@ -31,7 +31,6 @@ export const Chart = ({ userPerformance }) => {
                     <PolarAngleAxis 
                         dataKey='kind' 
                         tick={{ fill: 'white' }}
-                        /*tickFormatter={tick => userPerformance.kind[tick]}*/
                         fontSize={12} 
                         fontWeight={500}
                         fontFamily='Roboto'
@@ -44,7 +43,7 @@ export const Chart = ({ userPerformance }) => {
     )
 };
 
-Chart.propTypes = {
+Performance.propTypes = {
     userPerformance: PropTypes.arrayOf(
         PropTypes.shape({
             kind: PropTypes.string,

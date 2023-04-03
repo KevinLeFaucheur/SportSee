@@ -1,28 +1,21 @@
 import styled from "styled-components";
-import { Stat } from "../components/Stat";
-import { Chart as WeightChart } from "../components/BarChart"
-import { Chart as Objectives } from "../components/LineChart"
-import { Chart as Radar } from "../components/RadarChart"
-import { Chart as KPI } from "../components/PieChart"
 import { useEffect, useState } from "react";
-import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
 import { Navigate, useParams } from "react-router-dom";
-import iconCalorie from "../assets/icon_calorie.svg"
-import iconProtein from "../assets/icon_protein.svg"
-import iconGlucide from "../assets/icon_glucide.svg"
-import iconLipid from "../assets/icon_lipid.svg"
-import { getPerformanceModel, getStatModel, getAverageSessionsModel } from "../models/Models";
+import { Stat } from "../components/Stat";
+import { Activity } from "../components/Activity"
+import { AverageSessions } from "../components/AverageSessions"
+import { Performance } from "../components/Performance"
+import { Score } from "../components/Score"
+import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
+import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel, getActivityModel } from "../models/Models";
+import { statsIcons } from "../styles/icons";
+import * as mocks from '../mocks/api_mock' 
+
+const apiIsMocked = false;
 
 const users = [
   { id: '12' },
   { id: '18' },
-]
-
-const icons = [
-    {src: iconCalorie, alt: 'Calories'}, 
-    {src: iconProtein, alt: 'Proteins'}, 
-    {src: iconGlucide, alt: 'CarboHydrates'}, 
-    {src: iconLipid, alt: 'Lipids'}
 ];
 
 const ProfileWrapper = styled.div`
@@ -90,22 +83,12 @@ const GraphWrapper = styled.div`
   width: 75%;
 `
 
-const GraphMain = styled.div`
-  width: 100%;
-  height: 50%;
-`
-
-const GraphSub = styled.div`
-  display: flex;
-  justify-content: space-between;
-  height: 48%;
-`
-
 const Graph = styled.div`
   &:first-child {
     width: 100%;
     height: 50%;
     align-self: flex-start;
+    padding: 24px;
   }
 
   height: 46%;
@@ -129,7 +112,18 @@ export const Profile = () => {
       setUserNotFound(true);
       return;
     }
+
+    // When API is mocked
+    if(apiIsMocked) {
+      setUserData(mocks.user);
+      setUserKeyData(mocks.stats);
+      setUserActivity(mocks.activity);
+      setUserAverageSessions(mocks.averageSessions);
+      setUserPerformance(mocks.performance);
+      return;
+    }
       
+    // Resolves and models all API data succesfully received
     Promise
       .all([
         getUser(id), 
@@ -138,29 +132,29 @@ export const Profile = () => {
         getUserPerformance(id)
       ])
       .then(results => {
-        setUserData(results[0].data);
+        setUserData(getUserModel(results[0].data));
         setUserKeyData(getStatModel(results[0].data.keyData));
-        setUserActivity(results[1].data);
+        setUserActivity(getActivityModel(results[1].data));
         setUserAverageSessions(getAverageSessionsModel(results[2].data));
         setUserPerformance(getPerformanceModel(results[3].data));
       });
   }, [id]);
 
-  return (userNotFound ? <Navigate to='404'/> :
+  return (userNotFound ? <Navigate to='../404' state={{ error: 'Utilisateur non trouvé.' }}/> :
     <ProfileWrapper>
       <Head>
-          {<h2>Bonjour <FirstName>{userData?.userInfos.firstName}</FirstName></h2>}
+          {<h2>Bonjour <FirstName>{userData?.firstName}</FirstName></h2>}
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>
         <GraphWrapper>
-          <Graph><WeightChart userActivity={userActivity} /></Graph>
-          <Graph><Objectives userAverageSessions={userAverageSessions} /></Graph>
-          <Graph><Radar userPerformance={userPerformance}/></Graph>
-          <Graph><KPI userData={userData} /></Graph>
+          <Graph><Activity userActivity={userActivity} /></Graph>
+          <Graph><AverageSessions userAverageSessions={userAverageSessions} /></Graph>
+          <Graph><Performance userPerformance={userPerformance}/></Graph>
+          <Graph><Score userData={userData} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {userKeyData && icons.map((icon, index) =>
+          {userKeyData && statsIcons.map((icon, index) =>
               <Stat key={`dashboard-${index}`} icon={icon} userKeyData={userKeyData[index]} />
           )}
         </StatsWrapper>

@@ -24,7 +24,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-export const Chart = ({ userAverageSessions }) => {
+export const AverageSessions = ({ userAverageSessions }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {  
@@ -35,16 +35,16 @@ export const Chart = ({ userAverageSessions }) => {
     <ResponsiveContainer height='100%' width='100%'>
       <LineChart width={730} height={250} data={userAverageSessions} style={{ backgroundColor: '#E60000', borderRadius: '5px' }}
           margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
-        <XAxis dataKey="day" strokeOpacity={0} tick={{ fill: 'white', opacity: 0.5, fontSize: '12px' }} />
-        <YAxis hide={true} tick={7} />
+        <XAxis dataKey="day" strokeOpacity={0} tick={{ fill: 'white', opacity: 0.5, fontSize: '12px' }} domain={[0, 150]} />
+        <YAxis hide={true} tick={7} domain={[0, 120]} />
         <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
-        {/* <Legend /> */}
+        {/* <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={70} visibility="hidden"/> */}
         <Line type="monotone" dataKey="sessionLength" stroke="white" />
         <text
           x='12%'
           y='12%'
           dy={+12}
-          style={{ fontSize: '15px', fontWeight: 500, fill: '#FFFFFF', fillOpacity: 0.5 }}
+          style={{ fontSize: '15px', fontWeight: 500, fill: '#FFFFFF', fillOpacity: 0.5, height: "100px" }}
           width={50}
           textAnchor='start'
           verticalanchor='start'
@@ -55,7 +55,7 @@ export const Chart = ({ userAverageSessions }) => {
   )
 };
 
-Chart.propTypes = {
+AverageSessions.propTypes = {
   userAverageSessions: PropTypes.arrayOf(
     PropTypes.shape({
       day: PropTypes.string,

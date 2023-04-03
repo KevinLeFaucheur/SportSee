@@ -1,6 +1,50 @@
 /**
+ * Data model for the user 
+ * @param {Object} data
+ * @param {number} data.score 
+ * @param {number} data.todayScore 
+ * @param {Object} data.userInfos
+ * @returns {{ firstName: string, score: number }}
+ */
+export const getUserModel = (data) => {
+  let modelData = {};
+
+  modelData = {
+    firstName: data.userInfos.firstName,
+    score: data.todayScore ? data.todayScore : data.score,
+  };
+  
+  return modelData;
+};
+
+/**
+ * Data model for the activity
+ * @param {} 
+ * @returns {}
+ */
+export const getActivityModel = (data) => {
+  let modelData = {};
+
+  modelData = data.sessions.map((session, index) => {
+    return { 
+      day: `${index + 1}`,
+      kilogram: session.kilogram,
+      calories: session.calories,
+    }
+  })
+
+  console.log(modelData);
+  
+  return modelData;
+};
+
+/**
  * Data model for the energy statistics
- * @param {{ calorieCount: number, carbohydrateCount: number, lipidCount: number, proteinCount: number }} data
+ * @param {Object} data
+ * @param {number} data.calorieCount
+ * @param {number} data.carbohydrateCount 
+ * @param {number} data.lipidCount
+ * @param {number} data.proteinCount
  * @returns {{ label: string, count: string }}
  */
 export const getStatModel = (data) => {
@@ -41,13 +85,15 @@ export const getStatModel = (data) => {
 
 /**
  * Data model for the performance statistics
- * @param {{ data: { value: number, kind: number }, kind: { string } }} perfData 
+ * @param {Object} performanceData 
+ * @param {[{ value: number, kind: number }]} performanceData.data 
+ * @param {{index: string}} performanceData.kind
  * @returns {{ kind: string, value: number }}
  */
-export const getPerformanceModel = (perfData) => {
-  const { data, kind } = perfData;
+export const getPerformanceModel = (performanceData) => {
+  const { data, kind } = performanceData;
   let dataModel = [];
-  // console.log(perfData);
+  // console.log(performanceData);
 
   for(const property in data) {
     switch(kind[parseInt(property)+1]) {
@@ -97,13 +143,13 @@ export const getPerformanceModel = (perfData) => {
 /**
  * Data model for the average sessions statistics
  * @param {{  sessions: [{ day: number, sessionLength: number }] }} data 
- * @returns { { day: string, sessionLength: number }[] } day of the week, sessionLength in minutes
+ * @returns { [{ day: string, sessionLength: number }] } Day of the week, sessionLength in minutes
  */
 export const getAverageSessionsModel = (data) => {
   const { sessions } = data;
   const dataModel = [];
   const labels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-  console.log(data);
+  // console.log(data);
 
   for(const property in sessions) {
     dataModel.push({
@@ -111,6 +157,6 @@ export const getAverageSessionsModel = (data) => {
       sessionLength: sessions[property].sessionLength
     })
   }
-  console.log(dataModel);
+  // console.log(dataModel);
   return dataModel;
 }
