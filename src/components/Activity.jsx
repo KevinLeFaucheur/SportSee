@@ -47,7 +47,7 @@ export const Activity = ({ userActivity }) => {
           bottom: 0,
         }}>
         <CartesianGrid strokeDasharray="1 3" vertical={false} />
-        <XAxis dataKey='day' tickFormatter={(_, index) => index + 1} />
+        <XAxis dataKey='day' />
         <YAxis tickCount={3} orientation='right' axisLine={false} strokeOpacity={0}/>
         <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
         <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={70} />

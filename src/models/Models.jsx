@@ -18,7 +18,9 @@ export const getUserModel = (data) => {
 };
 
 /**
- * 
+ * Data model for the activity
+ * @param {} 
+ * @returns {}
  */
 export const getActivityModel = (data) => {
   let modelData = {};

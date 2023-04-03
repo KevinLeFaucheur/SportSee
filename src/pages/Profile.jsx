@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { Stat } from "../components/Stat";
 import { Activity } from "../components/Activity"
 import { AverageSessions } from "../components/AverageSessions"
@@ -83,17 +83,6 @@ const GraphWrapper = styled.div`
   width: 75%;
 `
 
-// const GraphMain = styled.div`
-//   width: 100%;
-//   height: 50%;
-// `
-
-// const GraphSub = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   height: 48%;
-// `
-
 const Graph = styled.div`
   &:first-child {
     width: 100%;
@@ -116,8 +105,6 @@ export const Profile = () => {
   const [userPerformance, setUserPerformance] = useState();
   const [userNotFound, setUserNotFound] = useState(false);
   const { id } = useParams();
-
-  const navigate = useNavigate();
   
   useEffect(() => {  
     
@@ -128,7 +115,6 @@ export const Profile = () => {
 
     // When API is mocked
     if(apiIsMocked) {
-      console.log(mocks);
       setUserData(mocks.user);
       setUserKeyData(mocks.stats);
       setUserActivity(mocks.activity);
@@ -154,8 +140,7 @@ export const Profile = () => {
       });
   }, [id]);
 
-  // return (userNotFound ? navigate("../404", { state: { error: 'This user was not found.' }}) :
-  return (userNotFound ? <Navigate to='../404' state={{ error: 'This user was not found.' }}/> :
+  return (userNotFound ? <Navigate to='../404' state={{ error: 'Utilisateur non trouvé.' }}/> :
     <ProfileWrapper>
       <Head>
           {<h2>Bonjour <FirstName>{userData?.firstName}</FirstName></h2>}
