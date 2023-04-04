@@ -19,8 +19,8 @@ export const getUserModel = (data) => {
 
 /**
  * Data model for the activity
- * @param {} 
- * @returns {}
+ * @param {[{ day: string, kilogram: number, calories: number }]} data
+ * @returns {[{ day: string, kilogram: number, calories: number }]}
  */
 export const getActivityModel = (data) => {
   let modelData = {};

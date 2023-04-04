@@ -19,7 +19,7 @@ export const App = () => {
         <Route path='/settings' element={<Settings />} />
         <Route path='/community' element={<Community />} />
         <Route path='/404' element={<Error />} />
-        <Route path='*' element={<Navigate to='/404' />} />
+        <Route path='*' element={<Navigate to='/404' state={{ error: 'Page non existante.' }}/>} />
       </Routes>
     </Router>
   )
