@@ -35,7 +35,7 @@ export const Side = () => {
                         <SideButton icon={icon} />
                     </Link>
             )}
-            <Copyright>Copiryght, SportSee 2020</Copyright>
+            <Copyright>Copyright, SportSee 2023</Copyright>
         </SideWrapper>
     )
 }

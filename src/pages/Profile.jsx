@@ -13,11 +13,6 @@ import * as mocks from '../mocks/api_mock'
 
 const apiIsMocked = false;
 
-const users = [
-  { id: '12' },
-  { id: '18' },
-];
-
 const ProfileWrapper = styled.div`
   height: 779px;
   margin-left: 117px;
@@ -103,15 +98,9 @@ export const Profile = () => {
   const [userActivity, setUserActivity] = useState();
   const [userAverageSessions, setUserAverageSessions] = useState();
   const [userPerformance, setUserPerformance] = useState();
-  const [userNotFound, setUserNotFound] = useState(false);
   const { id } = useParams();
   
   useEffect(() => {  
-    
-    if(!users.find(user => user.id === id)) {
-      setUserNotFound(true);
-      return;
-    }
 
     // When API is mocked
     if(apiIsMocked) {
@@ -140,11 +129,11 @@ export const Profile = () => {
       });
   }, [id]);
 
-  return (userNotFound ? <Navigate to='../404' state={{ error: 'Utilisateur non trouvé.' }}/> :
+  return (
     <ProfileWrapper>
       <Head>
           {<h2>Bonjour <FirstName>{userData?.firstName}</FirstName></h2>}
-          <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+          <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
       <Body>
         <GraphWrapper>

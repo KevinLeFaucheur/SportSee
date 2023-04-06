@@ -22,6 +22,7 @@ export const Home = () => {
         <HomeWrapper>
             <Link to={'/profile/12'} >User 12</Link>
             <Link to={'/profile/18'} >User 18</Link>
+            <Link to={'/profile/42'} >User 42</Link>
         </HomeWrapper>
     )
 }

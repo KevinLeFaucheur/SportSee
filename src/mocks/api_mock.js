@@ -1,51 +1,47 @@
 export const user = {
   score: 0.49,
-  userInfos: {
-    firstName: 'John',
-    lastName: 'Doe',
-    age: 34,
-  },
+  firstName: 'John',
+  lastName: 'Doe',
+  age: 34,
 };
 
-export const activity = {
-  sessions: [
-    {
-        day: '1',
-        kilogram: 55,
-        calories: 14
-    },
-    {
-        day: '2',
-        kilogram: 12,
-        calories: 45
-    },
-    {
-        day: '3',
-        kilogram: 78,
-        calories: 87
-    },
-    {
-        day: '4',
-        kilogram: 96,
-        calories: 58
-    },
-    {
-        day: '5',
-        kilogram: 75,
-        calories: 42
-    },
-    {
-        day: '6',
-        kilogram: 86,
-        calories: 62
-    },
-    {
-        day: '7',
-        kilogram: 23,
-        calories: 14
-    },
-  ]
-};
+export const activity = [
+  {
+    day: '1',
+    kilogram: 55,
+    calories: 14
+  },
+  {
+    day: '2',
+    kilogram: 12,
+    calories: 45
+  },
+  {
+    day: '3',
+    kilogram: 78,
+    calories: 87
+  },
+  {
+    day: '4',
+    kilogram: 96,
+    calories: 58
+  },
+  {
+    day: '5',
+    kilogram: 75,
+    calories: 42
+  },
+  {
+    day: '6',
+    kilogram: 86,
+    calories: 62
+  },
+  {
+    day: '7',
+    kilogram: 23,
+    calories: 14
+  },
+];
 
 export const stats = [
   {

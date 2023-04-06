@@ -7,6 +7,7 @@ import { Community } from './pages/Community';
 import { Error } from './pages/Error';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { Layout } from './layout/Layout';
+import { Auth } from './components/Auth';
 
 export const App = () => {
   return (
@@ -15,7 +16,9 @@ export const App = () => {
       <Layout />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/profile/:id' element={<Profile />} />
+        <Route element={<Auth />} >
+          <Route path='/profile/:id' element={<Profile />} />
+        </Route>
         <Route path='/settings' element={<Settings />} />
         <Route path='/community' element={<Community />} />
         <Route path='/404' element={<Error />} />
