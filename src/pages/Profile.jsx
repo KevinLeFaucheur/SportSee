@@ -14,12 +14,13 @@ import * as mocks from '../mocks/api_mock'
 const apiIsMocked = false;
 
 const ProfileWrapper = styled.div`
-  height: 779px;
+  height: /*779px*/63%;
   margin-left: 117px;
-  padding: 100px;
+  padding: 6.5%;
 
-  @media (max-width: 768px) {
-    height: 100%;
+  @media (max-width: 1024px) {
+    height: 80%;
+    padding: 6.5% 2vw;
   }
 `
 
@@ -39,7 +40,7 @@ const Head = styled.div`
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
-    margin: 0 0 77px;
+    margin: 0 0 6vh;
   }
 `
 
@@ -52,20 +53,8 @@ const Body = styled.div`
   justify-content: space-between;
   height: 100%;
 
-  @media (max-width: 768px) {
-    align-items: center;
-    flex-direction: column;
-  }
-`
-
-const StatsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-    flex-direction: row;
+  @media (max-width: 1024px) {
+    height: 95%;
   }
 `
 
@@ -76,6 +65,10 @@ const GraphWrapper = styled.div`
   align-items: flex-end;
   height: 100%;
   width: 75%;
+
+  @media (max-width: 1024px) {
+    width: 75%;
+  }
 `
 
 const Graph = styled.div`
@@ -90,6 +83,17 @@ const Graph = styled.div`
   width: 31%;
   background-color: #FBFBFB;
   border-radius: 5px;
+`
+
+const StatsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 19%;
+
+  @media (max-width: 1024px) {
+    width: 24%;
+  }
 `
 
 export const Profile = () => {

@@ -10,21 +10,22 @@ const StatWrapper = styled.div`
   width: 258px;
   background-color: #FBFBFB; 
   border-radius: 5px;
-  padding: 32px;
-
-    @media (max-width: 768px) {
-        width: 48%;
-    }
+  padding: 30px;
+	
+	@media (max-width: 1024px) {
+		width: 100%;
+  	padding: 2vw;
+	}
 `
 
 const StatIcon = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    background-color: rgba(255, 0, 0 , 0.07);
-    border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 60px;
+	background-color: rgba(255, 0, 0 , 0.07);
+	border-radius: 6px;
 `
 
 const StatText = styled.div`
@@ -39,46 +40,46 @@ const StatText = styled.div`
 `
 
 const StatCount = styled.p`
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: 0px;
-    text-align: left;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 24px;
+	letter-spacing: 0px;
+	text-align: left;
 `
 
 const StatLabel = styled.p`
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #74798C;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 24px;
+	letter-spacing: 0px;
+	text-align: left;
+	color: #74798C;
 `
 
 export const Stat = ({ icon, userKeyData }) => {
-    const { src, alt } = icon;
-    const [isLoading, setIsLoading] = useState(true);
-  
-    useEffect(() => {  
-      setIsLoading(userKeyData === undefined);
-    }, [userKeyData]);
+	const { src, alt } = icon;
+	const [isLoading, setIsLoading] = useState(true);
 
-    return (isLoading ? <Loading /> :
-        <StatWrapper>
-            <StatIcon>
-                <img src={src} alt={alt} />
-            </StatIcon>
-            <StatText>
-                <StatCount>{userKeyData.count}</StatCount>
-                <StatLabel>{userKeyData.label}</StatLabel>
-            </StatText>
-        </StatWrapper>
-    )
+	useEffect(() => {  
+		setIsLoading(userKeyData === undefined);
+	}, [userKeyData]);
+
+	return (isLoading ? <Loading /> :
+		<StatWrapper>
+			<StatIcon>
+				<img src={src} alt={alt} />
+			</StatIcon>
+			<StatText>
+				<StatCount>{userKeyData.count}</StatCount>
+				<StatLabel>{userKeyData.label}</StatLabel>
+			</StatText>
+		</StatWrapper>
+	)
 }
 
 Stat.propTypes = {
-    userKeyData: PropTypes.shape({
-        count: PropTypes.string,
-        label: PropTypes.string,
-    })
+	userKeyData: PropTypes.shape({
+		count: PropTypes.string,
+		label: PropTypes.string,
+	})
 };

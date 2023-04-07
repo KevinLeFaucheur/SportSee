@@ -47,7 +47,7 @@ export const Score = ({ userData }) => {
         <text x='50%' y='43%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontWeight={700} fontSize={26}>{score * 100}%</text>
         <text x='50%' y='53%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontSize={16}>de votre</text>
         <text x='50%' y='60%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontSize={16}>objectif</text>
-        <text x='12%' y='12%' dy={+12} style={{ fontSize: '15px', fontWeight: 500, fill: '#000000' }} width={50} 
+        <text x='1.5vw' y='1.5vw' dy={+12} style={{ fontSize: '15px', fontWeight: 500, fill: '#000000' }} width={50} 
           textAnchor='start'
           verticalanchor='start'
           >Score

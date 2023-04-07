@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { 
-  Radar, 
-  RadarChart, 
-  PolarGrid, 
-  ResponsiveContainer, 
-  PolarAngleAxis, 
-  Text, 
-} from "recharts"; 
+import { Radar, RadarChart, PolarGrid, ResponsiveContainer, PolarAngleAxis, Text, } from "recharts"; 
 import { Loading } from "./Loading";
 
 
@@ -35,9 +28,9 @@ export const Performance = ({ userPerformance }) => {
   return (isLoading ? <Loading /> :
     <ResponsiveContainer height='100%' width='100%'>
       <RadarChart 
-        outerRadius={70} 
-        width={500} 
-        height={500} 
+        outerRadius={70}
+        // width={250} 
+        // height={250} 
         data={userPerformance} 
         style={{ backgroundColor: '#282D30', borderRadius: '5px' }}
         margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
