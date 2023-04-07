@@ -1,18 +1,9 @@
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"; 
 import { useEffect, useState } from "react";
-import { 
-  Bar, 
-  BarChart, 
-  CartesianGrid, 
-  Legend, 
-  ResponsiveContainer, 
-  Tooltip, 
-  XAxis, 
-  YAxis 
-} from "recharts"; 
-import PropTypes from 'prop-types';
 import { Loading } from "./Loading";
+import PropTypes from 'prop-types';
 
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div style={{ backgroundColor: '#E60000', color: 'white', fontSize: '7px', padding: '10px' }}>
@@ -47,7 +38,8 @@ export const Activity = ({ userActivity }) => {
         <XAxis dataKey='day' />
         <YAxis tickCount={3} orientation='right' axisLine={false} strokeOpacity={0}/>
         <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
-        <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={70}/>
+        <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={70}
+          formatter={(value) => <span style={{ color: '#74798C' }}>{value}</span>} />
         <Bar dataKey='kilogram' name="Poids (kg)" barSize={7} fill="#282D30" radius={5} />
         <Bar dataKey='calories' name="Calories brûlées (kCal)" barSize={7} fill="#E60000" radius={5} />
         <text

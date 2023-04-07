@@ -157,6 +157,11 @@ export const getAverageSessionsModel = (data) => {
       sessionLength: sessions[property].sessionLength
     })
   }
-  // console.log(dataModel);
+
+  // Data added before and after to simulate week overflow
+  dataModel.push({ day: '', sessionLength: 54 });
+  dataModel.unshift({ day: '', sessionLength: 14 });
+  
+  console.log(dataModel);
   return dataModel;
 }

@@ -1,7 +1,20 @@
 import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { Pie, PieChart, ResponsiveContainer } from "recharts"; 
+import { Customized, Dot, Pie, PieChart, ResponsiveContainer } from "recharts"; 
 import { Loading } from "./Loading";
+
+const CustomizedDot = (props) => {
+  // console.log(props);
+
+  return (
+    <Dot
+      cx={props.width / 2}
+			cy={props.height / 2}
+			r={80}
+      fill='white' 
+    />
+  )
+};
 
 export const Score = ({ userData }) => {
   const [score, setScore] = useState(0);
@@ -28,15 +41,9 @@ export const Score = ({ userData }) => {
           innerRadius={80} 
           outerRadius={90}  
           cornerRadius={5}
-          fill="#E60000" />
-					<Pie 
-						data={[userData]} 
-						dataKey="score"
-						nameKey="name" 
-						innerRadius={0} 
-						outerRadius={80}  
-						animationDuration={0}
-						fill="#FFFFFF" />
+          fill="#E60000" 
+				/>
+				<Customized component={CustomizedDot}/>
         <text x='50%' y='43%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontWeight={700} fontSize={26}>{score * 100}%</text>
         <text x='50%' y='53%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontSize={16}>de votre</text>
         <text x='50%' y='60%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontSize={16}>objectif</text>
@@ -49,7 +56,6 @@ export const Score = ({ userData }) => {
     </ResponsiveContainer>
   )
 };
-
 
 Score.propTypes = {
   userData: PropTypes.shape({
