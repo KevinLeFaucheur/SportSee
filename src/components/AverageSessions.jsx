@@ -1,7 +1,7 @@
 import { Customized, Line, LineChart, Rectangle, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"; 
 import { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
 import { Loading } from "./Loading";
+import PropTypes from 'prop-types';
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -41,13 +41,18 @@ export const AverageSessions = ({ userAverageSessions }) => {
 
   return (isLoading ? <Loading /> :
     <ResponsiveContainer height='100%' width='100%'>  
-      <LineChart  width={730} height={250} data={userAverageSessions} style={{ backgroundColor: '#E60000', borderRadius: '5px' }}
-          margin={{ top: 15, right: 0, left: 0, bottom: 15 }}>
+      <LineChart 
+        data={userAverageSessions}
+        width={730} height={250} 
+        style={{ backgroundColor: '#E60000', borderRadius: '5px' }}
+        margin={{ top: 15, right: 0, left: 0, bottom: 15 }}
+      >
         <XAxis dataKey="day" strokeOpacity={0} tick={{ fill: 'white', opacity: 0.5, fontSize: '12px' }} domain={[1, 7]} />
         <YAxis hide={true} tick={7} domain={[0, 130]} />
         <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} cursor={false} />
-        <Line type="monotone" dataKey="sessionLength" stroke="url(#colorUv)" dot={false} 
-          fill="url(#colorUv)"
+        <Line 
+          dataKey="sessionLength" type="monotone" 
+          stroke="url(#colorUv)" dot={false} fill="url(#colorUv)"
         />
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0.5" y2="0">
@@ -56,13 +61,9 @@ export const AverageSessions = ({ userAverageSessions }) => {
           </linearGradient>
         </defs>
         <text
-          x='12%'
-          y='12%'
-          dy={+12}
+          x='12%' y='12%' dy={+12} width={50}
+          textAnchor='start' verticalanchor='start'
           style={{ fontSize: '15px', fontWeight: 500, fill: 'white', fillOpacity: 0.5, height: "100px" }}
-          width={50}
-          textAnchor='start'
-          verticalanchor='start'
         >Durée moyenne des sessions
         </text>
         <Customized component={CustomizedRectangle}/>

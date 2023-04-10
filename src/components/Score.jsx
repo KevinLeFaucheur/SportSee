@@ -31,16 +31,10 @@ export const Score = ({ userData }) => {
     <ResponsiveContainer height='100%' width='100%'>
       <PieChart width={100} height={100} style={{ borderRadius: '5px' }}>
         <Pie 
-          data={[userData]} 
-          dataKey="score"
-          nameKey="name" 
-          cx="50%" 
-          cy="50%" 
-          startAngle={90}
-          endAngle={90 + 360 * score}
-          innerRadius={80} 
-          outerRadius={90}  
-          cornerRadius={5}
+          data={[userData]} dataKey="score" nameKey="name" 
+          cx="50%" cy="50%" 
+          startAngle={90} endAngle={90 + 360 * score}
+          innerRadius={80} outerRadius={90} cornerRadius={5}
           fill="#E60000" 
 				/>
 				<Customized component={CustomizedDot}/>

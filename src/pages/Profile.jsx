@@ -8,7 +8,7 @@ import { Performance } from "../components/Performance"
 import { Score } from "../components/Score"
 import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
 import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel, getActivityModel } from "../models/Models";
-import { statsIcons } from "../styles/icons";
+// import { statsIcons } from "../styles/icons";
 import * as mocks from '../mocks/api_mock' 
 
 // const apiIsMocked = false;

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
 import { Radar, RadarChart, PolarGrid, ResponsiveContainer, PolarAngleAxis, Text, } from "recharts"; 
+import { useEffect, useState } from "react";
 import { Loading } from "./Loading";
+import PropTypes from 'prop-types';
 
 
 const renderPolarAngleAxis = ({ payload, x, y, cx, cy, fill, ...rest }) => {
@@ -28,21 +28,21 @@ export const Performance = ({ userPerformance }) => {
   return (isLoading ? <Loading /> :
     <ResponsiveContainer height='100%' width='100%'>
       <RadarChart 
-        outerRadius={70}
-        // width={250} 
-        // height={250} 
         data={userPerformance} 
+        outerRadius={70}
         style={{ backgroundColor: '#282D30', borderRadius: '5px' }}
-        margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
-          <PolarGrid radialLines={false} color='white' />
-          <PolarAngleAxis 
-            dataKey='kind' 
-            tick={props => renderPolarAngleAxis(props)}
-            fontSize={12} 
-            fontWeight={500}
-            fontFamily='Roboto'
-          />
-          <Radar dataKey="value" stroke="#E60000" fill="#E60000" fillOpacity={0.8} />
+        margin={{ top: 15, right: 15, left: 15, bottom: 15 }}
+      >
+        <PolarGrid radialLines={false} color='white' />
+        <PolarAngleAxis 
+          dataKey='kind' 
+          tick={props => renderPolarAngleAxis(props)}
+          fontFamily='Roboto' fontSize={12} fontWeight={500}
+        />
+        <Radar 
+          dataKey="value" 
+          stroke="#E60000" fill="#E60000" fillOpacity={0.8}
+        />
       </RadarChart>
     </ResponsiveContainer>
   )

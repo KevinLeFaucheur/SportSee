@@ -25,30 +25,25 @@ export const Activity = ({ userActivity }) => {
   return (isLoading ? <Loading /> :
   <ResponsiveContainer height='100%' width='100%'>
       <BarChart
-        width={700}
-        height={400}
         data={userActivity}
-        margin={{
-          top: 0,
-          right: 0,
-          left: 50,
-          bottom: 0,
-        }}>
+        width={700} height={400}
+        margin={{ top: 0, right: 0, left: 50, bottom: 0 }}
+      >
         <CartesianGrid strokeDasharray="1 3" vertical={false} />
         <XAxis dataKey='day' />
         <YAxis tickCount={3} orientation='right' axisLine={false} strokeOpacity={0}/>
         <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} />
-        <Legend verticalAlign="top" align="right" iconType="circle" iconSize={8} height={70}
-          formatter={(value) => <span style={{ color: '#74798C' }}>{value}</span>} />
+        <Legend 
+          verticalAlign="top" align="right" iconType="circle" iconSize={8} height={70}
+          formatter={(value) => <span style={{ color: '#74798C' }}>{value}</span>} 
+        />
         <Bar dataKey='kilogram' name="Poids (kg)" barSize={7} fill="#282D30" radius={5} />
         <Bar dataKey='calories' name="Calories brûlées (kCal)" barSize={7} fill="#E60000" radius={5} />
-        <text
-          dy={+12}
+        <text 
+          dy={+12} width={200} textAnchor='start' verticalanchor='start'
           style={{ fontSize: 15, fontWeight: 500, fill: '#20253A' }}
-          width={200}
-          textAnchor='start'
-          verticalanchor='start'
-        >Activité quotidienne
+        >
+        Activité quotidienne
         </text>
       </BarChart>
     </ResponsiveContainer>
