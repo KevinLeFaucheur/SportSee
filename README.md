@@ -24,12 +24,15 @@ Wishing to launch a new version of their profile page. This page should let the 
 
 You need first the micro API from this repositery: <br>
 [https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard)
-- Fork the repository
+- Fork the back-end repository.
 - Clone it on your computer.
 - The ` yarn ` command will allow you to install the dependencies.
 - The ` yarn dev ` command will allow you to run the micro API.
 
 ## 2.2 Launching the front-end project
+
+- Fork this repository.
+- Clone it on your computer.
 
 ## Available Scripts
 

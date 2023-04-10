@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
+import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel, getActivityModel } from "../models/Models";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Stat } from "../components/Stat";
@@ -6,9 +7,7 @@ import { Activity } from "../components/Activity"
 import { AverageSessions } from "../components/AverageSessions"
 import { Performance } from "../components/Performance"
 import { Score } from "../components/Score"
-import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
-import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel, getActivityModel } from "../models/Models";
-// import { statsIcons } from "../styles/icons";
+import styled from "styled-components";
 import * as mocks from '../mocks/api_mock' 
 
 // const apiIsMocked = false;
@@ -116,7 +115,8 @@ export const Profile = () => {
       return;
     }
       
-    // Resolves and models all API data succesfully received
+    /** When API is used: resolves and models all API data succesfully received.
+     *  results is an array of the fulfillment values */
     Promise
       .all([
         getUser(id), 
@@ -147,7 +147,6 @@ export const Profile = () => {
           <Graph><Score userData={userData} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {/* {console.log(userKeyData)} */}
           {userKeyData && userKeyData.map((stat, index) =>
               <Stat key={`dashboard-${index}`} icon={stat.icon} userKeyData={stat} />
           )}

@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
 
-
+/** Renders angle labels with padding */
 const renderPolarAngleAxis = ({ payload, x, y, cx, cy, fill, ...rest }) => {
   return (
     <Text
       {...rest}
       verticalAnchor="middle"
       fill="white"
-      y={y + (y - cy) / 8}
-      x={x + (x - cx) / 8}
+      y={y + (y - cy) / 8}        // Calculates padding
+      x={x + (x - cx) / 8}        // cx, cy: dot center coordinates
     >
       {payload.value}
     </Text>

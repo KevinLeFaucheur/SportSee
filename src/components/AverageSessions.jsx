@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
 
-const CustomTooltip = ({ active, payload, label }) => {
+/** This renders the custom tooltip */
+const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     // console.log(payload);
     return (
@@ -16,6 +17,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
+/** This renders the darker area and calculates its dynamic width */
 const CustomizedRectangle = (props) => {
   // console.log(props);
 
@@ -55,6 +57,7 @@ export const AverageSessions = ({ userAverageSessions }) => {
           stroke="url(#colorUv)" dot={false} fill="url(#colorUv)"
         />
         <defs>
+          {/* Fade in from the left for the Line component */}
           <linearGradient id="colorUv" x1="0" y1="0" x2="0.5" y2="0">
             <stop offset="5%" stopColor="white" stopOpacity={0.2}/>
             <stop offset="95%" stopColor="white" stopOpacity={1}/>

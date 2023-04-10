@@ -35,7 +35,7 @@ export const getActivityModel = (data) => {
     }
   })
 
-  console.log(modelData);
+  // console.log(modelData);
   
   return modelData;
 };
@@ -99,7 +99,7 @@ export const getStatModel = (data) => {
 export const getPerformanceModel = (performanceData) => {
   const { data, kind } = performanceData;
   let dataModel = [];
-  // console.log(performanceData);
+  console.log(performanceData);
 
   for(const property in data) {
     switch(kind[parseInt(property)+1]) {
@@ -164,10 +164,10 @@ export const getAverageSessionsModel = (data) => {
     })
   }
 
-  // Data added before and after to simulate week overflow
+  /** Data added before and after to simulate week overflow */
   dataModel.push({ day: '', sessionLength: 54 });
   dataModel.unshift({ day: '', sessionLength: 14 });
   
-  console.log(dataModel);
+  // console.log(dataModel);
   return dataModel;
 }

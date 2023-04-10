@@ -33,7 +33,7 @@ export const Score = ({ userData }) => {
         <Pie 
           data={[userData]} dataKey="score" nameKey="name" 
           cx="50%" cy="50%" 
-          startAngle={90} endAngle={90 + 360 * score}
+          startAngle={90} endAngle={90 + 360 * score}         // Pie starts from top, calculating counter-clockwise angle
           innerRadius={80} outerRadius={90} cornerRadius={5}
           fill="#E60000" 
 				/>
