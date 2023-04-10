@@ -1,3 +1,5 @@
+import { statsIcons } from "../styles/icons";
+
 /**
  * Data model for the user 
  * @param {Object} data
@@ -56,25 +58,29 @@ export const getStatModel = (data) => {
       case 'calorieCount':
         dataModel.push({ 
           label: 'Calories', 
-          count: `${data[property].toLocaleString('en-US')}kCal` 
+          count: `${data[property].toLocaleString('en-US')}kCal`,
+          icon: statsIcons[0]
         });
         break;
       case 'proteinCount':
         dataModel.push({ 
           label: 'Proteines', 
-          count: `${data[property].toLocaleString('en-US')}g` 
+          count: `${data[property].toLocaleString('en-US')}g`,
+          icon: statsIcons[1]
         });
         break;
       case 'carbohydrateCount':
         dataModel.push({ 
           label: 'Glucides', 
-          count: `${data[property].toLocaleString('en-US')}g` 
+          count: `${data[property].toLocaleString('en-US')}g`,
+          icon: statsIcons[2]
         });
         break;
       case 'lipidCount':
         dataModel.push({ 
           label: 'Lipides', 
-          count: `${data[property].toLocaleString('en-US')}g` 
+          count: `${data[property].toLocaleString('en-US')}g`,
+          icon: statsIcons[3]
         });
         break;
       default:

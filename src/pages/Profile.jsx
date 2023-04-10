@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Stat } from "../components/Stat";
 import { Activity } from "../components/Activity"
 import { AverageSessions } from "../components/AverageSessions"
@@ -11,10 +11,10 @@ import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserMode
 import { statsIcons } from "../styles/icons";
 import * as mocks from '../mocks/api_mock' 
 
-const apiIsMocked = false;
+// const apiIsMocked = false;
 
 const ProfileWrapper = styled.div`
-  height: /*779px*/63%;
+  height: 63%;
   margin-left: 117px;
   padding: 6.5%;
 
@@ -107,7 +107,7 @@ export const Profile = () => {
   useEffect(() => {  
 
     // When API is mocked
-    if(apiIsMocked) {
+    if(process.env.REACT_APP_IS_API_MOCKED === 'true') {
       setUserData(mocks.user);
       setUserKeyData(mocks.stats);
       setUserActivity(mocks.activity);
@@ -147,8 +147,9 @@ export const Profile = () => {
           <Graph><Score userData={userData} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {userKeyData && statsIcons.map((icon, index) =>
-              <Stat key={`dashboard-${index}`} icon={icon} userKeyData={userKeyData[index]} />
+          {/* {console.log(userKeyData)} */}
+          {userKeyData && userKeyData.map((stat, index) =>
+              <Stat key={`dashboard-${index}`} icon={stat.icon} userKeyData={stat} />
           )}
         </StatsWrapper>
       </Body>
