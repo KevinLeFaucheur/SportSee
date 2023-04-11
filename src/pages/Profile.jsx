@@ -10,7 +10,7 @@ import { Score } from "../components/Score"
 import styled from "styled-components";
 import * as mocks from '../mocks/api_mock' 
 
-// const apiIsMocked = false;
+const API_IS_MOCKED = false;
 
 const ProfileWrapper = styled.div`
   height: 63%;
@@ -105,8 +105,8 @@ export const Profile = () => {
   
   useEffect(() => {  
 
-    // When API is mocked
-    if(process.env.REACT_APP_IS_API_MOCKED === 'true') {
+    // When API is mocked: data has already the correct model 
+    if(API_IS_MOCKED) {
       setUserData(mocks.user);
       setUserKeyData(mocks.stats);
       setUserActivity(mocks.activity);

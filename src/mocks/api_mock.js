@@ -1,5 +1,7 @@
+import { statsIcons } from "../styles/icons";
+
 export const user = {
-  score: 0.49,
+  score: [{ score: 0.49 }],
   firstName: 'John',
   lastName: 'Doe',
   age: 34,
@@ -46,19 +48,23 @@ export const activity = [
 export const stats = [
   {
     label: 'Calories',
-    count: '1234kCal',
+    count: '1,234kCal',
+    icon: statsIcons[0],
   },
   {
     label: 'Proteines',
     count: '123g',
+    icon: statsIcons[1],
   },
   {
     label: 'Glucides',
     count: '456g',
+    icon: statsIcons[2],
   },
   {
     label: 'Lipides',
     count: '789g',
+    icon: statsIcons[3],
   },
 ];
 

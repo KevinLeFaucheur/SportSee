@@ -6,6 +6,7 @@ const users = [
   { id: '18' },
 ];
 
+/** Checks if requested user id exists */
 const useAuth = () => {
   const user = { loggedIn: false };
   const { id } = useParams();
