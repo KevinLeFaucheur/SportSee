@@ -64,7 +64,7 @@ export const AverageSessions = ({ userAverageSessions }) => {
           </linearGradient>
         </defs>
         <text
-          x='12%' y='12%' dy={+12} width={50}
+          x='10%' y='12%' dy={+12} width={50}
           textAnchor='start' verticalanchor='start'
           style={{ fontSize: '15px', fontWeight: 500, fill: 'white', fillOpacity: 0.5, height: "100px" }}
         >Durée moyenne des sessions

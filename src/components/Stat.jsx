@@ -14,7 +14,7 @@ const StatWrapper = styled.div`
 	
 	@media (max-width: 1024px) {
 		width: 100%;
-  	padding: 2vw;
+  	padding: 1.5vw;
 	}
 `
 
@@ -26,6 +26,11 @@ const StatIcon = styled.div`
 	height: 60px;
 	background-color: rgba(255, 0, 0 , 0.07);
 	border-radius: 6px;
+	
+	@media (max-width: 1024px) {
+		width: 48px;
+		height: 48px;
+	}
 `
 
 const StatText = styled.div`
@@ -37,6 +42,10 @@ const StatText = styled.div`
   p {
     margin: 0;
   }
+	
+	@media (max-width: 1024px) {
+ 		width: 76px;
+	}
 `
 
 const StatCount = styled.p`
@@ -45,6 +54,10 @@ const StatCount = styled.p`
 	line-height: 24px;
 	letter-spacing: 0px;
 	text-align: left;
+	
+	@media (max-width: 1024px) {
+		font-size: 18px;
+	}
 `
 
 const StatLabel = styled.p`
@@ -54,6 +67,10 @@ const StatLabel = styled.p`
 	letter-spacing: 0px;
 	text-align: left;
 	color: #74798C;
+	
+	@media (max-width: 1024px) {
+		font-size: 12px;
+	}
 `
 
 export const Stat = ({ icon, userKeyData }) => {

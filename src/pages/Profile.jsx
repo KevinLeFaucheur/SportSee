@@ -66,7 +66,7 @@ const GraphWrapper = styled.div`
   width: 75%;
 
   @media (max-width: 1024px) {
-    width: 75%;
+    width: 80%;
   }
 `
 
@@ -79,7 +79,7 @@ const Graph = styled.div`
   }
 
   height: 46%;
-  width: 31%;
+  width: 32%;
   background-color: #FBFBFB;
   border-radius: 5px;
 `
@@ -91,7 +91,7 @@ const StatsWrapper = styled.div`
   width: 19%;
 
   @media (max-width: 1024px) {
-    width: 24%;
+    width: 19%;
   }
 `
 
