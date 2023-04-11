@@ -144,7 +144,7 @@ export const Profile = () => {
           <Graph><Activity userActivity={userActivity} /></Graph>
           <Graph><AverageSessions userAverageSessions={userAverageSessions} /></Graph>
           <Graph><Performance userPerformance={userPerformance}/></Graph>
-          <Graph><Score userData={userData} /></Graph>
+          <Graph><Score userScore={userData?.score} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
           {userKeyData && userKeyData.map((stat, index) =>

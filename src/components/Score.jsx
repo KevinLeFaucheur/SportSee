@@ -16,22 +16,22 @@ const CustomizedDot = (props) => {
   )
 };
 
-export const Score = ({ userData }) => {
+export const Score = ({ userScore }) => {
   const [score, setScore] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {  
-    if(userData) {
-      setScore(userData.score);
+    if(userScore) {
+      setScore(userScore[0].score);
     }
-    setIsLoading(userData === undefined);
-  }, [userData]);
+    setIsLoading(userScore === undefined);
+  }, [userScore]);
 
   return (isLoading ? <Loading /> :
     <ResponsiveContainer height='100%' width='100%'>
       <PieChart width={100} height={100} style={{ borderRadius: '5px' }}>
         <Pie 
-          data={[userData]} dataKey="score" nameKey="name" 
+          data={userScore} dataKey="score" nameKey="name" 
           cx="50%" cy="50%" 
           startAngle={90} endAngle={90 + 360 * score}         // Pie starts from top, calculating counter-clockwise angle
           innerRadius={80} outerRadius={90} cornerRadius={5}
@@ -53,18 +53,6 @@ export const Score = ({ userData }) => {
 
 Score.propTypes = {
   userData: PropTypes.shape({
-    id: PropTypes.number,
-    keyData: PropTypes.shape({
-      calorieCount: PropTypes.number,
-      carbohydrateCount: PropTypes.number,
-      lipidCount: PropTypes.number,
-      proteinCount: PropTypes.number,
-    }),
-    todayScore: PropTypes.number,
-    userInfos:PropTypes.shape({
-      age: PropTypes.number,
-      firstName: PropTypes.string,
-      lastName: PropTypes.string,
-    })
+    score: PropTypes.number.isRequired
   })
 };

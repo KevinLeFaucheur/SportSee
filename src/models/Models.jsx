@@ -6,14 +6,16 @@ import { statsIcons } from "../styles/icons";
  * @param {number} data.score 
  * @param {number} data.todayScore 
  * @param {Object} data.userInfos
- * @returns {{ firstName: string, score: number }}
+ * @returns {{ firstName: string, score: [{ score: number }] }}
  */
 export const getUserModel = (data) => {
   let modelData = {};
 
   modelData = {
     firstName: data.userInfos.firstName,
-    score: data.todayScore ? data.todayScore : data.score,
+    score: data.todayScore 
+      ? [{ score: data.todayScore }] 
+      : [{ score: data.score }],
   };
   
   return modelData;
