@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { Customized, Dot, Pie, PieChart, ResponsiveContainer } from "recharts"; 
+import { Customized, Dot, RadialBar, RadialBarChart, ResponsiveContainer } from "recharts"; 
 import { Loading } from "./Loading";
 
 const CustomizedDot = (props) => {
@@ -29,24 +29,22 @@ export const Score = ({ userScore }) => {
 
   return (isLoading ? <Loading /> :
     <ResponsiveContainer height='100%' width='100%'>
-      <PieChart width={100} height={100} style={{ borderRadius: '5px' }}>
-        <Pie 
-          data={userScore} dataKey="score" nameKey="name" 
-          cx="50%" cy="50%" 
-          startAngle={90} endAngle={90 + 360 * score}         // Pie starts from top, calculating counter-clockwise angle
-          innerRadius={80} outerRadius={90} cornerRadius={5}
-          fill="#E60000" 
-				/>
+      <RadialBarChart 
+        data={userScore} 
+        width={100} height={100} 
+        innerRadius={85} outerRadius={95} 
+        startAngle={90} endAngle={90 + 360 * score}   
+        fill="#E60000" 
+      >
+        <RadialBar minAngle={15} clockWise={true} dataKey='score' cornerRadius={5} />
 				<Customized component={CustomizedDot}/>
-        <text x='50%' y='43%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontWeight={700} fontSize={26}>{score * 100}%</text>
-        <text x='50%' y='53%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontSize={16}>de votre</text>
-        <text x='50%' y='60%' textAnchor="middle" dominantBaseline="middle" fontFamily="Roboto" fontSize={16}>objectif</text>
-        <text x='1.5vw' y='1.5vw' dy={+12} style={{ fontSize: '15px', fontWeight: 500, fill: '#000000' }} width={50} 
-          textAnchor='start'
-          verticalanchor='start'
-          >Score
+        <text x='50%' y='38%' textAnchor="middle" fontSize={16} fontWeight={500} style={{ fill: 'black' }}>
+          <tspan x="50%" dy="1.2rem" fontWeight={700} fontSize={26} >{score * 100}%</tspan>
+          <tspan x="50%" dy="1.2rem">de votre</tspan>
+          <tspan x="50%" dy="1.2rem">objectif</tspan>
+          <tspan x='15%' y='12%' fontSize={15}>Score</tspan>
         </text>
-      </PieChart>
+      </RadialBarChart>
     </ResponsiveContainer>
   )
 };
