@@ -4,7 +4,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 // const API_URL = 'http://localhost:3000/';
 
 /**
- * Retrieves general data by user id
+ * Retrieves general data by endpoint /user/:userId
  * @param {string} userId 
  * @returns { Promise.<{
  *              id: number, 
@@ -21,7 +21,7 @@ export const getUser = async (userId) => {
 };
 
 /**
- * Retrieves activity data by user id
+ * Retrieves activity data by endpoint /user/:userId/activity
  * @param {string} userId 
  * @returns { Promise.<{
  *              sessions: [{ day: string, kilogram: number, calories: number }], 
@@ -36,7 +36,7 @@ export const getUserActivity = async (userId) => {
 };
 
 /**
- * Retrieves average session lengths data by user id
+ * Retrieves average session lengths data by endpoint /user/:userId/average-sessions
  * @param {string} userId 
  * @returns { Promise.<{
  *             sessions: [{ day: number, sessionLength: number }], 
@@ -51,7 +51,7 @@ export const getUserAverageSessions = async (userId) => {
 };
 
 /**
- * Retrieves performance data by user id
+ * Retrieves performance data by endpoint /user/:userId/performance
  * @param {string} userId 
  * @returns { Promise.<{
  *             data: [{ value: number, kind: number }], 
