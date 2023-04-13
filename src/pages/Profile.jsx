@@ -13,7 +13,7 @@ import * as mocks from '../mocks/api_mock'
 const API_IS_MOCKED = false;
 
 const ProfileWrapper = styled.div`
-  height: 63%;
+  height: 78%;
   margin-left: 117px;
   padding: 6.5%;
 
@@ -147,8 +147,8 @@ export const Profile = () => {
           <Graph><Score userScore={userData?.score} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
-          {userKeyData && userKeyData.map((stat, index) =>
-              <Stat key={`dashboard-${index}`} icon={stat.icon} userKeyData={stat} />
+          {userKeyData && userKeyData.map((data, index) =>
+              <Stat key={`dashboard-${index}`} icon={data.icon} userKeyData={data} />
           )}
         </StatsWrapper>
       </Body>

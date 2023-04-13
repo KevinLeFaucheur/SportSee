@@ -8,8 +8,8 @@ const CustomizedDot = (props) => {
 
   return (
     <Dot
-      cx={props.width / 2}
-			cy={props.height / 2}
+      cx={props.width / 2}    // Calculates Dot center
+			cy={props.height / 2}   // cx, cy : center
 			r={80}
       fill='white' 
     />

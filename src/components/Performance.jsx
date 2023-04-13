@@ -11,7 +11,7 @@ const renderPolarAngleAxis = ({ payload, x, y, cx, cy, fill, ...rest }) => {
       verticalAnchor="middle"
       fill="white"
       y={y + (y - cy) / 16}        // Calculates padding
-      x={x + (x - cx) / 16}        // cx, cy: dot center coordinates
+      x={x + (x - cx) / 16}        // cx, cy: text coordinates
     >
       {payload.value}
     </Text>
