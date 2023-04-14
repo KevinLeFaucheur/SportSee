@@ -36,7 +36,7 @@ You need first the micro API from this repositery: <br>
    git clone https://github.com/KevinLeFaucheur/SportSee.git
    ```
 
-1. Change the current working directory to the location where you want the cloned directory:
+1. Change the current working directory to the cloned project location:
    ```sh
    cd SportSee
    ```
