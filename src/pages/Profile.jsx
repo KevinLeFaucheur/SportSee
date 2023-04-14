@@ -1,5 +1,5 @@
 import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from "../services";
-import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel, getActivityModel } from "../models/Models";
+import { getPerformanceModel, getStatModel, getAverageSessionsModel, getUserModel, getActivityModel, getScoreModel } from "../models/Models";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Stat } from "../components/Stat";
@@ -9,6 +9,7 @@ import { Performance } from "../components/Performance"
 import { Score } from "../components/Score"
 import styled from "styled-components";
 import * as mocks from '../mocks/api_mock' 
+import { ErrorMessage } from "../components/ErrorMessage";
 
 const API_IS_MOCKED = false;
 
@@ -97,10 +98,12 @@ const StatsWrapper = styled.div`
 
 export const Profile = () => {
   const [userData, setUserData] = useState();
+  const [userScore, setUserScore] = useState();
   const [userKeyData, setUserKeyData] = useState();
   const [userActivity, setUserActivity] = useState();
   const [userAverageSessions, setUserAverageSessions] = useState();
   const [userPerformance, setUserPerformance] = useState();
+  const [hasNetworkError, setHasNetworkError] = useState();
   const { id } = useParams();
   
   useEffect(() => {  
@@ -108,6 +111,7 @@ export const Profile = () => {
     // When API is mocked: data has already the correct model 
     if(API_IS_MOCKED) {
       setUserData(mocks.user);
+      setUserScore(mocks.user.score);
       setUserKeyData(mocks.stats);
       setUserActivity(mocks.activity);
       setUserAverageSessions(mocks.averageSessions);
@@ -125,33 +129,40 @@ export const Profile = () => {
         getUserPerformance(id)
       ])
       .then(results => {
-        setUserData(getUserModel(results[0].data));
-        setUserKeyData(getStatModel(results[0].data.keyData));
-        setUserActivity(getActivityModel(results[1].data));
-        setUserAverageSessions(getAverageSessionsModel(results[2].data));
-        setUserPerformance(getPerformanceModel(results[3].data));
+        const error = results.find(e => e instanceof Error);
+        if(error instanceof Error) {
+          setHasNetworkError(error);
+        }
+        setUserData(results[0] instanceof Error ? results[0] : getUserModel(results[0].data));
+        setUserScore(results[0] instanceof Error ? results[0] : getScoreModel(results[0].data));
+        setUserKeyData(results[0] instanceof Error ? results[0] : getStatModel(results[0].data.keyData));
+        setUserActivity(results[1] instanceof Error ? results[1] : getActivityModel(results[1].data));
+        setUserAverageSessions(results[2] instanceof Error ? results[2] : getAverageSessionsModel(results[2].data));
+        setUserPerformance(results[3] instanceof Error ? results[3] : getPerformanceModel(results[3].data));
       });
   }, [id]);
 
+  console.log(userScore);
   return (
     <ProfileWrapper>
       <Head>
           {<h2>Bonjour <FirstName>{userData?.firstName}</FirstName></h2>}
           <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
       </Head>
+      {hasNetworkError ? <ErrorMessage error={hasNetworkError} /> :
       <Body>
         <GraphWrapper>
           <Graph><Activity userActivity={userActivity} /></Graph>
           <Graph><AverageSessions userAverageSessions={userAverageSessions} /></Graph>
           <Graph><Performance userPerformance={userPerformance}/></Graph>
-          <Graph><Score userScore={userData?.score} /></Graph>
+          <Graph><Score userScore={userScore} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
           {userKeyData && userKeyData.map((data, index) =>
               <Stat key={`dashboard-${index}`} icon={data.icon} userKeyData={data} />
           )}
         </StatsWrapper>
-      </Body>
+      </Body>}
     </ProfileWrapper>
   )
 }

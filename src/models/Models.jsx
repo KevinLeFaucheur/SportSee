@@ -3,16 +3,34 @@ import { statsIcons } from "../styles/icons";
 /**
  * Data model for the user 
  * @param {Object} data
- * @param {number} data.score 
- * @param {number} data.todayScore 
  * @param {Object} data.userInfos
- * @returns {{ firstName: string, score: [{ score: number }] }}
+ * @returns {{ firstName: string, lastName: string, age: number }}
  */
 export const getUserModel = (data) => {
   let modelData = {};
 
   modelData = {
     firstName: data.userInfos.firstName,
+    lastName: data.userInfos.lastName,
+    age: data.userInfos.age,
+  };
+  
+  return modelData;
+};
+
+/**
+ * Data model for the user 
+ * @param {Object} data
+ * @param {number} data.score 
+ * @param {number} data.todayScore 
+ * @returns {{ score: [{ score: number }] }}
+ */
+export const getScoreModel = (data) => {
+  let modelData = {};
+
+  console.log(data);
+
+  modelData = {
     score: data.todayScore 
       ? [{ score: data.todayScore }] 
       : [{ score: data.score }],

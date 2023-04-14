@@ -6,62 +6,70 @@ const API_URL = process.env.REACT_APP_API_URL;
 /**
  * Retrieves general data by endpoint /user/:userId
  * @param {string} userId 
- * @returns { Promise.<{
- *              id: number, 
- *              keyData: { calorieCount: number, carbohydrateCount: number, lipidCount: number, proteinCount: number }, 
- *              todayScore: number, 
- *              userInfos: { firstName: string, lastName: string, age: number } 
- * }>} Promise object data
- */
+ * 
+ * @returns {{ id: number, 
+*              keyData: { calorieCount: number, carbohydrateCount: number, lipidCount: number, proteinCount: number }, 
+*              score: number,
+*              userInfos: { firstName: number, lastName: number, age: number } 
+*           }|{ error: string }} data object or error message
+*/
 export const getUser = async (userId) => {
     try {
-        const { data } = await axios.get(`${API_URL}user/${userId}`);
+        const  { data }  = await axios.get(`${API_URL}user/${userId}`);
         return data;
-    } catch (error) { console.log(error); }
+    } catch (error) { 
+        return new Error(`${error.message}, please try again later.`); /*{ error: `${error.code}, ${error.message}` }*/
+    }
 };
 
 /**
  * Retrieves activity data by endpoint /user/:userId/activity
- * @param {string} userId 
- * @returns { Promise.<{
- *              sessions: [{ day: string, kilogram: number, calories: number }], 
- *              userId: number
- * }>} Promise object data
+ * @param {string} userId
+ * 
+ * @returns {{ sessions: [{ day: string, kilogram: number, calories: number }], 
+ *             userId: number
+ *          }|{ error: string }} data object or error message
  */
 export const getUserActivity = async (userId) => {
     try {
         const { data } = await axios.get(`${API_URL}user/${userId}/activity`);
         return data;
-    } catch (error) { console.log(error); }
+    } catch (error) { 
+        return new Error(`${error.message}, please try again later.`);
+    }
 };
 
 /**
  * Retrieves average session lengths data by endpoint /user/:userId/average-sessions
- * @param {string} userId 
- * @returns { Promise.<{
- *             sessions: [{ day: number, sessionLength: number }], 
+ * @param {string} userId
+ *
+ * @returns {{ sessions: [{ day: number, sessionLength: number }], 
  *             userId: number
- * }>} Promise object data
+ *          }|{ error: string }} data object or error message
  */
 export const getUserAverageSessions = async (userId) => {
     try {
         const { data } = await axios.get(`${API_URL}user/${userId}/average-sessions`);
         return data;
-    } catch (error) { console.log(error); }
+    } catch (error) { 
+        return new Error(`${error.message}, please try again later.`);
+    }
 };
 
 /**
  * Retrieves performance data by endpoint /user/:userId/performance
- * @param {string} userId 
- * @returns { Promise.<{
- *             data: [{ value: number, kind: number }], 
+ * @param {string} userId
+ * 
+ * @returns {{ data: [{ value: number, kind: number }], 
  *             kind: [{ index: string }], 
  *             userId: number
- * }>} Promise object data
+ *          }|{ error: string }} data object or error message
  */
 export const getUserPerformance = async (userId) => {
     try {
         const { data } = await axios.get(`${API_URL}user/${userId}/performance`);
         return data;
-    } catch (error) { console.log(error); }
+    } catch (error) { 
+        return new Error(`${error.message}, please try again later.`);
+    }
 };

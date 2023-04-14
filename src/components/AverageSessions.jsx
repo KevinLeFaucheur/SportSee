@@ -2,6 +2,7 @@ import { Customized, Line, LineChart, Rectangle, ResponsiveContainer, Tooltip, X
 import { useEffect, useState } from "react";
 import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
+import { ErrorMessage } from "./ErrorMessage";
 
 /** This renders the custom tooltip */
 const CustomTooltip = ({ active, payload }) => {
@@ -35,13 +36,16 @@ const CustomizedRectangle = (props) => {
 };
 
 export const AverageSessions = ({ userAverageSessions }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasNetworkError, setHasNetworkError] = useState(false);
 
   useEffect(() => {  
-    setIsLoading(userAverageSessions === undefined);  
+    setIsLoading(userAverageSessions === undefined);
+    setHasNetworkError(userAverageSessions instanceof Error);
   }, [userAverageSessions]);
 
   return (isLoading ? <Loading /> :
+          hasNetworkError ? <ErrorMessage error={userAverageSessions} /> :
     <ResponsiveContainer height='100%' width='100%'>  
       <LineChart 
         data={userAverageSessions}
@@ -76,10 +80,13 @@ export const AverageSessions = ({ userAverageSessions }) => {
 };
 
 AverageSessions.propTypes = {
-  userAverageSessions: PropTypes.arrayOf(
-    PropTypes.shape({
-      day: PropTypes.string,
-      sessionLength: PropTypes.number
-    })
-  )
+  userAverageSessions: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        day: PropTypes.string,
+        sessionLength: PropTypes.number
+      })
+  ),
+    PropTypes.instanceOf(Error)
+  ])
 };

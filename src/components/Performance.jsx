@@ -2,6 +2,7 @@ import { Radar, RadarChart, PolarGrid, ResponsiveContainer, PolarAngleAxis, Text
 import { useEffect, useState } from "react";
 import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
+import { ErrorMessage } from "./ErrorMessage";
 
 /** Renders angle labels with padding */
 const renderPolarAngleAxis = ({ payload, x, y, cx, cy, fill, ...rest }) => {
@@ -19,13 +20,16 @@ const renderPolarAngleAxis = ({ payload, x, y, cx, cy, fill, ...rest }) => {
 }
 
 export const Performance = ({ userPerformance }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasNetworkError, setHasNetworkError] = useState(false);
 
   useEffect(() => {  
     setIsLoading(userPerformance === undefined);
+    setHasNetworkError(userPerformance instanceof Error);
   }, [userPerformance]);
 
   return (isLoading ? <Loading /> :
+          hasNetworkError ? <ErrorMessage error={userPerformance} /> :
     <ResponsiveContainer height='100%' width='100%'>
       <RadarChart 
         data={userPerformance} 
@@ -48,10 +52,13 @@ export const Performance = ({ userPerformance }) => {
 };
 
 Performance.propTypes = {
-  userPerformance: PropTypes.arrayOf(
-    PropTypes.shape({
-      kind: PropTypes.string,
-      value: PropTypes.number,
-    })
-  )
+  userPerformance: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        kind: PropTypes.string,
+        value: PropTypes.number,
+      })
+    ),
+    PropTypes.instanceOf(Error)
+  ])
 };

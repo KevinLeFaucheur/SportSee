@@ -1,6 +1,7 @@
 ![JAVASCRIPT](./src/assets/badges/-javascript.svg)
 ![REACT](./src/assets/badges/-react.svg)
 <br>
+![node.js](https://img.shields.io/badge/node.js-v16.16.0-green?style=for-the-badge&logo=nodedotjs)
 ![react](https://img.shields.io/badge/react-18.2.0-18a7d6?style=for-the-badge&logo=react)
 ![react-router](https://img.shields.io/badge/react%20router-6.9.0-red?style=for-the-badge&logo=reactrouter)
 ![axios](https://img.shields.io/badge/axios-1.3.4-blueviolet?style=for-the-badge&logo=axios)
@@ -31,20 +32,26 @@ You need first the micro API from this repositery: <br>
 
 ## 2.2 Launching the front-end project
 
-- Fork this repository.
-- Clone it on your computer.
+1. Change the current working directory to the location where you want the cloned directory:\
+   ```sh
+   cd /path/to/working-directory
+   ```
 
-## Available Scripts
+2. Clone the repository:\
+   ```sh
+   git clone https://github.com/KevinLeFaucheur/SportSee.git
+   ```
 
-In the project directory, you can run:
+3. Install NPM packages:\
+   ```sh
+   npm install
+   ```
+   
+4. Runs the app in the development mode:\
+   ```sh
+   npm start
+   ```
 
-### ` npm install `
-
-Installs all dependencies needed for the front-end to run.
-
-### `npm start`
-
-Runs the app in the development mode.\
 Open [http://localhost:3020](http://localhost:3020) to view it in your browser.
 
 The page will reload when you make changes.\

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { Customized, Dot, RadialBar, RadialBarChart, ResponsiveContainer } from "recharts"; 
 import { Loading } from "./Loading";
+import { ErrorMessage } from "./ErrorMessage";
 
 const CustomizedDot = (props) => {
   // console.log(props);
@@ -18,16 +19,17 @@ const CustomizedDot = (props) => {
 
 export const Score = ({ userScore }) => {
   const [score, setScore] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasNetworkError, setHasNetworkError] = useState(false);
+
   useEffect(() => {  
-    if(userScore) {
-      setScore(userScore[0].score);
-    }
+    setScore(userScore);
     setIsLoading(userScore === undefined);
+    setHasNetworkError(userScore instanceof Error);
   }, [userScore]);
 
   return (isLoading ? <Loading /> :
+          hasNetworkError ? <ErrorMessage error={userScore} /> :
     <ResponsiveContainer height='100%' width='100%'>
       <RadialBarChart 
         data={userScore} 
@@ -50,7 +52,10 @@ export const Score = ({ userScore }) => {
 };
 
 Score.propTypes = {
-  userData: PropTypes.shape({
-    score: PropTypes.number.isRequired
-  })
+  userScore: PropTypes.oneOfType([
+    PropTypes.shape({
+      score: PropTypes.number.isRequired
+  }),
+    PropTypes.instanceOf(Error)
+  ])
 };
