@@ -23,17 +23,13 @@ export const getUserModel = (data) => {
  * @param {Object} data
  * @param {number} data.score 
  * @param {number} data.todayScore 
- * @returns {{ score: [{ score: number }] }}
+ * @returns {{score: number}} score
  */
 export const getScoreModel = (data) => {
   let modelData = {};
 
-  console.log(data);
-
   modelData = {
-    score: data.todayScore 
-      ? [{ score: data.todayScore }] 
-      : [{ score: data.score }],
+    score: data.todayScore ? data.todayScore : data.score,
   };
   
   return modelData;

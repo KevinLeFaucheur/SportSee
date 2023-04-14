@@ -11,14 +11,14 @@ const API_URL = process.env.REACT_APP_API_URL;
 *              keyData: { calorieCount: number, carbohydrateCount: number, lipidCount: number, proteinCount: number }, 
 *              score: number,
 *              userInfos: { firstName: number, lastName: number, age: number } 
-*           }|{ error: string }} data object or error message
+*           } | Error } data object or Error object
 */
 export const getUser = async (userId) => {
     try {
         const  { data }  = await axios.get(`${API_URL}user/${userId}`);
         return data;
     } catch (error) { 
-        return new Error(`${error.message}, please try again later.`); /*{ error: `${error.code}, ${error.message}` }*/
+        return new Error(`${error.message}, please try again later.`);
     }
 };
 
@@ -28,7 +28,7 @@ export const getUser = async (userId) => {
  * 
  * @returns {{ sessions: [{ day: string, kilogram: number, calories: number }], 
  *             userId: number
- *          }|{ error: string }} data object or error message
+ *          } | Error } data object or Error object
  */
 export const getUserActivity = async (userId) => {
     try {
@@ -45,7 +45,7 @@ export const getUserActivity = async (userId) => {
  *
  * @returns {{ sessions: [{ day: number, sessionLength: number }], 
  *             userId: number
- *          }|{ error: string }} data object or error message
+ *          } | Error } data object or Error object
  */
 export const getUserAverageSessions = async (userId) => {
     try {
@@ -63,7 +63,7 @@ export const getUserAverageSessions = async (userId) => {
  * @returns {{ data: [{ value: number, kind: number }], 
  *             kind: [{ index: string }], 
  *             userId: number
- *          }|{ error: string }} data object or error message
+ *          } | Error } data object or Error object
  */
 export const getUserPerformance = async (userId) => {
     try {

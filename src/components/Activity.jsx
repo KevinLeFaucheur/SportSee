@@ -1,7 +1,6 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"; 
 import { useEffect, useState } from "react";
 import { Loading } from "./Loading";
-import { ErrorMessage } from "./ErrorMessage";
 import PropTypes from 'prop-types';
 
 const CustomTooltip = ({ active, payload }) => {
@@ -18,15 +17,12 @@ const CustomTooltip = ({ active, payload }) => {
 
 export const Activity = ({ userActivity }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [hasNetworkError, setHasNetworkError] = useState(false);
 
   useEffect(() => {  
     setIsLoading(userActivity === undefined);
-    setHasNetworkError(userActivity instanceof Error);
   }, [userActivity]);
 
   return (isLoading ? <Loading /> :
-          hasNetworkError ? <ErrorMessage error={userActivity} /> :
   <ResponsiveContainer height='100%' width='100%'>
       <BarChart
         data={userActivity}
@@ -55,14 +51,11 @@ export const Activity = ({ userActivity }) => {
 };
 
 Activity.propTypes = {
-  userActivity: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        day: PropTypes.string,
-        kilogram: PropTypes.number,
-        calories: PropTypes.number,
-      })
-    ),
-    PropTypes.instanceOf(Error)
-  ])
+  userActivity: PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.string,
+      kilogram: PropTypes.number,
+      calories: PropTypes.number,
+    })
+  )
 };

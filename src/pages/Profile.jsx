@@ -132,17 +132,17 @@ export const Profile = () => {
         const error = results.find(e => e instanceof Error);
         if(error instanceof Error) {
           setHasNetworkError(error);
+          return;
         }
-        setUserData(results[0] instanceof Error ? results[0] : getUserModel(results[0].data));
-        setUserScore(results[0] instanceof Error ? results[0] : getScoreModel(results[0].data));
-        setUserKeyData(results[0] instanceof Error ? results[0] : getStatModel(results[0].data.keyData));
-        setUserActivity(results[1] instanceof Error ? results[1] : getActivityModel(results[1].data));
-        setUserAverageSessions(results[2] instanceof Error ? results[2] : getAverageSessionsModel(results[2].data));
-        setUserPerformance(results[3] instanceof Error ? results[3] : getPerformanceModel(results[3].data));
+        setUserData(getUserModel(results[0].data));
+        setUserScore(getScoreModel(results[0].data));
+        setUserKeyData(getStatModel(results[0].data.keyData));
+        setUserActivity(getActivityModel(results[1].data));
+        setUserAverageSessions(getAverageSessionsModel(results[2].data));
+        setUserPerformance(getPerformanceModel(results[3].data));
       });
   }, [id]);
 
-  console.log(userScore);
   return (
     <ProfileWrapper>
       <Head>
@@ -155,7 +155,7 @@ export const Profile = () => {
           <Graph><Activity userActivity={userActivity} /></Graph>
           <Graph><AverageSessions userAverageSessions={userAverageSessions} /></Graph>
           <Graph><Performance userPerformance={userPerformance}/></Graph>
-          <Graph><Score userScore={userScore} /></Graph>
+          <Graph><Score userScore={userScore?.score} /></Graph>
         </GraphWrapper>
         <StatsWrapper>
           {userKeyData && userKeyData.map((data, index) =>
